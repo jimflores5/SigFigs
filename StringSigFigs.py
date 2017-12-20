@@ -14,10 +14,10 @@ def MakeNumber(sigFigs, power):
         value = random.choice(firstDigit)
 
         for digit in range(sigFigs-1):
-            if digit != sigFigs-1:
-                value += random.choice(allDigits)
-            else:
+            if digit == sigFigs-2:
                 value += random.choice(firstDigit)
+            else:
+                value += random.choice(allDigits)
                 
         value += (power-sigFigs+1)*"0"
 
