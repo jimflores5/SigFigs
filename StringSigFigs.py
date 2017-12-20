@@ -32,7 +32,13 @@ def MakeNumber(sigFigs, power):
                 value += random.choice(allDigits)
         return value
 
-for x in range(10):
+for x in range(4):
     sigFigs = random.randrange(1,7)
     power = random.randrange(-5,9)
-    print(sigFigs, power, MakeNumber(sigFigs,power))
+    value = MakeNumber(sigFigs,power)
+    text = "How many sig figs are in the value: "+ str(value)+"?\n"
+    answer = int(input(text))
+    if answer == sigFigs:
+        print("Correct!")
+    else:
+        print("Sorry,",value,"has",sigFigs,"sig figs.")
