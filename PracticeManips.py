@@ -1,10 +1,10 @@
 import random
-from StringSigFigs import MakeNumber
+from StringSigFigs import MakeNumber, RoundValue
+from CalcsWithSigFigs import addValues, subtractValues, multiplyValues, divideValues, findDecimalPlaces
 
-values = ["0.0173", "10.28", "1020","11.386","0.00137","303.2","0.22","0.88","0.0007"]
-operators = ['+','-','*','/']
+values = ["0.0173", "10.88", "1020","11.386","0.00137","303.2","0.22","0.88","0.0007","201"]
 
-def findDecimalPlaces(value):
+"""def findDecimalPlaces(value):
     decimalIndex = value.find(".")
     if decimalIndex>0:
         decimalPlaces = len(value)-decimalIndex-1
@@ -48,23 +48,11 @@ def subtractValues(first,second):
             result += "0"*(firstDP-resultDP)
     return result
 
-#def roundValue(value, sigFigs):
+for x in range(len(values)-1):
+    firstValue = random.choice(values)
+    secondValue = random.choice(values)
+    result = addValues(firstValue,secondValue)
+    print("{0} + {1} = {2}".format(firstValue,secondValue,result))
+    result = subtractValues(firstValue,secondValue)
+    print("{0} - {1} = {2}".format(firstValue,secondValue,result))"""
 
-
-#for x in range(len(values)-1):
- #   firstValue = random.choice(values)
-  #  secondValue = random.choice(values)
-   # result = addValues(firstValue,secondValue)
- #   print("{0} + {1} = {2}".format(firstValue,secondValue,result))
-  #  result = subtractValues(firstValue,secondValue)
-   # print("{0} - {1} = {2}".format(firstValue,secondValue,result))
-
-for x in range(5):
-    firstSigFigs = random.randrange(1, 6)
-    firstPower = random.randrange(-3, 4)
-    firstValue = MakeNumber(firstSigFigs, firstPower)
-    secondSigFigs = random.randrange(1, 6)
-    secondPower = random.randrange(-3, 4)
-    secondValue = MakeNumber(secondSigFigs, secondPower)
-    result = str(float(firstValue)*float(secondValue))
-    print("{0} * {1} = {2}".format(firstValue, secondValue, result))

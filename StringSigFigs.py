@@ -32,6 +32,40 @@ def MakeNumber(sigFigs, power):
                 value += random.choice(allDigits)
         return value
 
+def RoundValue(value, sigFigs):        
+    decimalIndex = value.find('.')
+    if decimalIndex < 0:
+        decimalIndex = len(value)
+
+    if float(value)<1:
+        placeholders = 0
+        for x in range(2,len(value)):
+            if value[x] == "0":
+                placeholders += 1
+            else:
+                break
+
+        roundToSigFigs = round(float(value)*10**placeholders,sigFigs)
+        addPlaceholders = round(roundToSigFigs/10**placeholders,sigFigs+placeholders)
+
+        if len(str(roundToSigFigs))-sigFigs < 3:
+            result = str(addPlaceholders)+"0"*(2-(len(str(roundToSigFigs))-sigFigs))
+        else:
+            result = str(addPlaceholders)
+        return result
+    else:
+        roundToSigFigs = round(float(value)/10**decimalIndex,sigFigs)
+        addZeros = round(roundToSigFigs*10**decimalIndex,sigFigs-decimalIndex)
+
+        if sigFigs <= decimalIndex:
+            result = str(int(addZeros))
+        elif len(str(addZeros))-sigFigs <= 0:
+            result = str(addZeros)+"0"*(sigFigs-len(str(addZeros))+1)
+        else:
+            result = str(addZeros)
+
+        return result
+
 def Main():
     for x in range(4):
         sigFigs = random.randrange(1,7)
