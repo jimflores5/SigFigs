@@ -51,7 +51,7 @@ def roundValue(value, sigFigs):
 
         return result
 
-for x in range(5):
+"""for x in range(5):
     index1 = random.randrange(len(values))
     index2 = random.randrange(len(values))
     value1 = values[index1]
@@ -67,5 +67,5 @@ for x in range(5):
     else:
         quotient = divideValues(value1,sf1,value2,sf2)
         print(value1,"*",value2,"=",product)
-        print(value1,"/",value2,"=",quotient,"\n")
+        print(value1,"/",value2,"=",quotient,"\n")"""
     

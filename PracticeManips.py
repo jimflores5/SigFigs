@@ -1,10 +1,42 @@
 import random
+from flask import Flask, request, redirect, render_template, session, flash
+import cgi
 from StringSigFigs import MakeNumber, RoundValue
 from CalcsWithSigFigs import addValues, subtractValues, multiplyValues, divideValues, findDecimalPlaces
 
+app = Flask(__name__)
+app.config['DEBUG'] = True
+app.secret_key = 'yrtsimehc'
+
+@app.route('/')
+def index():
+    return render_template('index.html',title="Sig Fig Practice")
+
+@app.route('/countingsf', methods=['POST', 'GET'])
+def countingsf():
+    if request.method == 'POST':
+        answer = request.form['answer']
+        actualSigFigs = request.form['actualSigFigs']
+        value = request.form['value']
+        if answer==actualSigFigs:
+            flash('Correct!  :-)')
+            return render_template('countingSigFigs.html', value=value, sigFigs = actualSigFigs, answer = answer)
+        else:
+            flash('Try again.', 'error')
+            return render_template('countingSigFigs.html',value=value, sigFigs = actualSigFigs)
+
+    sigFigs = random.randrange(1,7)
+    power = random.randrange(-5,9)
+    value = MakeNumber(sigFigs,power)
+    return render_template('countingSigFigs.html',title="Counting Sig Figs", value=value, sigFigs = sigFigs)
+
+if __name__ == '__main__':
+    app.run()
+
+"""
 values = ["0.0173", "10.88", "1020","11.386","0.00137","303.2","0.22","0.88","0.0007","201"]
 
-"""def findDecimalPlaces(value):
+def findDecimalPlaces(value):
     decimalIndex = value.find(".")
     if decimalIndex>0:
         decimalPlaces = len(value)-decimalIndex-1

@@ -63,7 +63,7 @@ def divideValues(value1, sf1, value2, sf2):
 
     return result
     
-for trials in range(5):
+"""for trials in range(5):
     operation = random.randrange(4)
     if operation <= 2:
         sigFigs1 = random.randrange(1,7)
@@ -94,4 +94,4 @@ for trials in range(5):
         print("{0} {1} {2} = {3}".format(value2,operators[operation],value1, result),"\n")
     else:
         result = divideValues(value1,sigFigs1,value2,sigFigs2)
-        print("{0} {1} {2} = {3}".format(value1,operators[operation],value2, result),"\n")
+        print("{0} {1} {2} = {3}".format(value1,operators[operation],value2, result),"\n")"""
