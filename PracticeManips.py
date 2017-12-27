@@ -19,7 +19,7 @@ def countingsf():
         actualSigFigs = request.form['actualSigFigs']
         value = request.form['value']
         if answer==actualSigFigs:
-            flash('Correct!  :-)')
+            flash('Correct!  :-)', 'correct')
             return render_template('countingSigFigs.html', value=value, sigFigs = actualSigFigs, answer = answer)
         else:
             flash('Try again.', 'error')
@@ -29,6 +29,25 @@ def countingsf():
     power = random.randrange(-5,9)
     value = MakeNumber(sigFigs,power)
     return render_template('countingSigFigs.html',title="Counting Sig Figs", value=value, sigFigs = sigFigs)
+
+@app.route('/roundingsf', methods=['POST', 'GET'])
+def roundingsf():
+    if request.method == 'POST':
+        answer = request.form['answer']
+        origValue = request.form['value']
+        sigFigs = int(request.form['sigFigs'])
+        roundedValue = RoundValue(origValue, sigFigs)
+        if answer==roundedValue:
+            flash('Correct!  :-)', 'correct')
+            return render_template('roundingSigFigs.html', value=origValue, sigFigs = sigFigs, answer = answer)
+        else:
+            flash('Try again.', 'error')
+            return render_template('roundingSigFigs.html',value=origValue, sigFigs = sigFigs, answer = answer)
+    #TODO - Deal with placeholding zeros needing to be significant.  Add verification checks to prevent problematic numbers (e.g. 199) from being selected.
+    sigFigs = random.randrange(1,7)
+    power = random.randrange(-4,6)
+    value = MakeNumber(9,power)
+    return render_template('roundingSigFigs.html',title="Rounding Sig Figs", value=value, sigFigs = sigFigs)
 
 if __name__ == '__main__':
     app.run()
