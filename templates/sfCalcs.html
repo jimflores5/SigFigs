@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class='wrapper text-center'>
+        <h1><u>Calculations with Significant Figures</u></h1>
+        <h2>Complete the following calculation.  Round the answer to the proper number of significant figures.</h2>
+        <p style="font-size: 16pt">(Hit 'Return' or 'Enter' to check your answer)</p>
+        {% if operation == '/' %}
+            <h3><u>{{value1}}</u></h3>
+            <h3>{{value2}}</h3>
+        {% elif operation == 'x' %}
+            <h3>{{value1}}</h3>
+            <h3><u>{{operation}} {{value2}}</u></h3>
+        {% else %}
+            <h3> {{value1}}</h3>
+            <h3><u>{{operation}} {{value2}}</u></h3>
+        {% endif %}
+        {% with messages = get_flashed_messages(with_categories=True) %} 
+        <form action="/sfcalcs" method="post">
+            <label for "answer" style="font-size: 14pt">Answer: </label>
+            <input name="answer" type="text" value="{{answer}}"></br>
+            {% for category,message in messages %}
+                <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+            {% endfor %}
+            </br></br>
+            <input name="result" type="hidden" value="{{result}}">
+            <input name="value1" type="hidden" value="{{value1}}">
+            <input name="value2" type="hidden" value="{{value2}}">
+            <input name="operation" type="hidden" value="{{operation}}">
+        </form>
+        {% endwith %}
+        </br>
+        <a class="btn btn-primary" href="sfcalcs" role="button">Next Practice Problem</a>
+        </br></br>
+        <div>
+            <a href='/'>Main Menu</a>
+        </div>
+    </div>
+
+{% endblock %}
