@@ -66,6 +66,25 @@ def RoundValue(value, sigFigs):
 
         return result
 
+def CheckAnswer(result, answer):
+    if answer == '':        #Check for null result.
+        return False
+
+    if answer[0] == ".":    #Convert '.xx' to '0.xx'.
+        answer = "0"+answer
+
+    if result == answer:    #Check for exact result.
+        return True
+    else:
+        return False
+
+def CheckRounding(result, sigFigs):
+    if float(result)>=10 and sigFigs <= len(result):
+        if result[sigFigs-1] == "0" and result.find('.') == -1:
+            return True
+        else:
+            return False
+
 def Main():
     for x in range(4):
         sigFigs = random.randrange(1,7)

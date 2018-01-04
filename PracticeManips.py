@@ -1,5 +1,5 @@
 import random
-from StringSigFigs import MakeNumber, RoundValue
+from StringSigFigs import MakeNumber, RoundValue, CheckAnswer
 from CalcsWithSigFigs import addValues, subtractValues, multiplyValues, divideValues, findDecimalPlaces
 
 operators = ['+', '-', '*', '/']
@@ -39,69 +39,35 @@ def sfcalcs():
     else:
         result = divideValues(value1,sigFigs1,value2,sigFigs2)
         answer = input("{0} {1} {2} = ".format(value1,operators[operation],value2))
-    
-    if answer == result:
+
+    if CheckAnswer(result, answer):
         return "Correct!  :-)"
     else:
         return "Sorry, the correct answer is {0}".format(result)
 
+def CheckRounding(result, sigFigs):
+    if float(result)>=10 and sigFigs <= len(result):
+        if result[sigFigs-1] == "0" and result.find('.') == -1:
+            print("Rounding {0} to {1} sig figs is ambiguous.  Choosing a new number...".format(result,sigFigs))
+            return True
+        else:
+            return False
+
+#TODO - Deal with placeholding zeros needing to be significant.  Add verification checks to prevent problematic numbers (e.g. 199) from being selected.
+values = ['199', '19.61824', '219.7', '1.95', '11.96', '1999', '2818.05']
+sfs = [1, 2, 3, 4, 6]
 for x in range(6):
-    print("Complete the following calculation.  Round the answer to the proper number of significant figures.")
-    feedback = sfcalcs()
-    print(feedback)
+    iffyValue = True
+    while iffyValue:
+        sigFigs = random.choice(sfs)
+        power = random.randrange(-4,6)
+        value = random.choice(values)
+        result = RoundValue(value, sigFigs)
+        iffyValue = CheckRounding(result,sigFigs)
 
-"""
-values = ["0.0173", "10.88", "1020","11.386","0.00137","303.2","0.22","0.88","0.0007","201"]
+    answer = input("Round {0} to {1} significant figures: ".format(value, sigFigs))
 
-def findDecimalPlaces(value):
-    decimalIndex = value.find(".")
-    if decimalIndex>0:
-        decimalPlaces = len(value)-decimalIndex-1
+    if CheckAnswer(result, answer):
+        print("Correct!  :-)")
     else:
-        decimalPlaces = 0
-    return decimalPlaces
-
-def addValues(first,second):
-    firstDP = findDecimalPlaces(first)
-    secondDP = findDecimalPlaces(second)
-    if firstDP == 0 or secondDP == 0:
-        result = str(int(round((float(first)+float(second)),0)))
-        return result
-    elif firstDP > secondDP:
-        result = str(round(float(first)+float(second),secondDP))
-        resultDP = findDecimalPlaces(result)
-        if resultDP < secondDP:
-            result += "0"
-    else:
-        result = str(round(float(first)+float(second),firstDP))
-        resultDP = findDecimalPlaces(result)
-        if resultDP < firstDP:
-            result += "0"
-    return result
-
-def subtractValues(first,second):
-    firstDP = findDecimalPlaces(first)
-    secondDP = findDecimalPlaces(second)
-    if firstDP == 0 or secondDP == 0:
-        result = str(int(round((float(first)-float(second)),0)))
-        return result
-    elif firstDP > secondDP:
-        result = str(round(float(first)-float(second),secondDP))
-        resultDP = findDecimalPlaces(result)
-        if resultDP < secondDP:
-            result += "0"
-    else:
-        result = str(round(float(first)-float(second),firstDP))
-        resultDP = findDecimalPlaces(result)
-        if resultDP < firstDP:
-            result += "0"*(firstDP-resultDP)
-    return result
-
-for x in range(len(values)-1):
-    firstValue = random.choice(values)
-    secondValue = random.choice(values)
-    result = addValues(firstValue,secondValue)
-    print("{0} + {1} = {2}".format(firstValue,secondValue,result))
-    result = subtractValues(firstValue,secondValue)
-    print("{0} - {1} = {2}".format(firstValue,secondValue,result))"""
-
+        print("Sorry, the correct answer is {0}.".format(result))

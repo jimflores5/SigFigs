@@ -1,7 +1,7 @@
 import random
 from flask import Flask, request, redirect, render_template, session, flash
 import cgi
-from StringSigFigs import MakeNumber, RoundValue
+from StringSigFigs import MakeNumber, RoundValue, CheckAnswer, CheckRounding
 from CalcsWithSigFigs import addValues, subtractValues, multiplyValues, divideValues, findDecimalPlaces
 
 app = Flask(__name__)
@@ -37,27 +37,33 @@ def roundingsf():
         origValue = request.form['value']
         sigFigs = int(request.form['sigFigs'])
         roundedValue = RoundValue(origValue, sigFigs)
-        if answer==roundedValue:
+        if CheckAnswer(roundedValue, answer):
             flash('Correct!  :-)', 'correct')
             return render_template('roundingSigFigs.html', value=origValue, sigFigs = sigFigs, answer = answer)
         else:
             flash('Try again.', 'error')
             return render_template('roundingSigFigs.html',value=origValue, sigFigs = sigFigs, answer = answer)
-    #TODO - Deal with placeholding zeros needing to be significant.  Add verification checks to prevent problematic numbers (e.g. 199) from being selected.
-    sigFigs = random.randrange(1,7)
-    power = random.randrange(-4,6)
-    value = MakeNumber(9,power)
+    
+    iffyValue = True
+    while iffyValue:
+        sigFigs = random.randrange(1,7)
+        power = random.randrange(-4,6)
+        value = MakeNumber(9,power)
+        result = RoundValue(value, sigFigs)
+        iffyValue = CheckRounding(result,sigFigs)
+    
     return render_template('roundingSigFigs.html',title="Rounding Sig Figs", value=value, sigFigs = sigFigs)
 
 @app.route('/sfcalcs', methods=['POST', 'GET'])
 def sfcalcs():
+    #TODO - Deal with placeholding zeros needing to be significant.  Add scientific notation option?
     if request.method == 'POST':
         answer = request.form['answer']
         result = request.form['result']
         value1 = request.form['value1']
         value2 = request.form['value2']
         operation = request.form['operation']
-        if answer==result:
+        if CheckAnswer(result, answer):
             flash('Correct!  :-)', 'correct')
             return render_template('sfCalcs.html',title="Calculations with Sig Figs", value1 = value1, value2 = value2, result = result, answer = answer, operation=operation)
         else:

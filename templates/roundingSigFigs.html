@@ -3,7 +3,11 @@
 {% block content %}
     <div class='wrapper text-center'>
         <h1><u>Round to the Requested Number of Significant Figures</u></h1>
-        <h2>Round {{value}} to {{sigFigs}} significant figures.</h2>
+        {% if sigFigs == 1 %}
+            <h2>Round {{value}} to {{sigFigs}} significant figure.</h2>
+        {% else %}
+            <h2>Round {{value}} to {{sigFigs}} significant figures.</h2>
+        {% endif %}
         <p style="font-size: 16pt">(Hit 'Return' or 'Enter' to check your answer)</p>
         {% with messages = get_flashed_messages(with_categories=True) %} 
         <form action="/roundingsf" method="post">
