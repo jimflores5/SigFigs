@@ -108,14 +108,43 @@ def sfcalcs():
 
 @app.route('/scinotation', methods=['POST', 'GET'])
 def scinotation():
+    if request.method == 'POST':
+        sciNot = request.form['sciNot']
+        if sciNot=='True':              #Given a value in sci notation, the user eneters a number in standard notation.
+            answer = request.form['answer']
+            result = request.form['value']
+            sciValue = request.form['sciValue']
+            power = request.form['power']
+            if CheckAnswer(result, answer):
+                flash('Correct!  :-)', 'correct')
+            else:
+                flash('Try again.', 'error')
+            return render_template('scientificNotation.html',title="Scientific Notation", value = result, sciValue=sciValue, power = power, sciNot = True, answer = answer)
+        else:                            #Given a value in standard notation, the user eneters a number in sci notation.
+            answer = request.form['answer']
+            result = request.form['value']
+            sciValue = request.form['sciValue']
+            power = request.form['power']
+            exponent = request.form['exponent']
+            if CheckAnswer(power, exponent) and CheckAnswer(sciValue,answer):
+                flash('Correct!  :-)', 'correct')
+            elif CheckAnswer(power, exponent) and not CheckAnswer(sciValue,answer):
+                flash('Correct power.  Wrong decimal number.', 'error')
+            elif CheckAnswer(sciValue,answer) and not CheckAnswer(power, exponent):
+                flash('Correct decimal number.  Wrong power.', 'error')
+            else:
+                flash('Both entries are incorrect.  Try again.', 'error')
+                
+            return render_template('scientificNotation.html',title="Scientific Notation", value = result, sciValue=sciValue, power = power, sciNot = False, answer = answer, exponent = exponent)
+
     sigFigs = random.randrange(1,5)
     power = random.randrange(-5,9)
-    if random.randrange(2) == 0:
-        value = ApplySciNotation(MakeNumber(sigFigs,power), sigFigs)
-        return render_template('scientificNotation.html',title="Scientific Notation", value=value, power = power, sciNot = True)
-    else:
-        value = MakeNumber(sigFigs,power)
-        return render_template('scientificNotation.html',title="Scientific Notation", value=value, sciNot = False)
+    value = MakeNumber(sigFigs,power)
+    sciValue = ApplySciNotation(value, sigFigs)
+    if random.randrange(2) == 0:  #Flip a coin: If '0', ask the user to change sci notation into standard notation.
+        return render_template('scientificNotation.html',title="Scientific Notation", value = value, sciValue=sciValue, power = power, sciNot = True)
+    else:                         #Otherwise ('1'), ask the user to change standard notation into sci notation.
+        return render_template('scientificNotation.html',title="Scientific Notation", value=value, sciValue=sciValue, power = power, sciNot = False)
 
 if __name__ == '__main__':
     app.run()

@@ -3,7 +3,7 @@
 {% block content %}
     <div class='wrapper text-center'>
         <h1><u>Practice with Scientific Notation</u></h1>
-        {% if  not sciNot %}
+        {% if not sciNot %}
             <h2>Convert the following value into <span style="color:rgba(255, 166, 0, 0.966)">scientific notation</span>.</h2>
         {% else %}
             <h2>Convert the following value into <span style="color:rgb(228, 60, 228)">standard notation</span>.</h2>
@@ -12,13 +12,13 @@
 
         {% with messages = get_flashed_messages(with_categories=True) %} 
         <form action="/scinotation" method="post">
-            {% if  not sciNot %}
+            {% if not sciNot %}
                 <label for "answer" style="font-size: 24pt">{{value}} = </label>
                 <input name="answer" type="text" style="font-size: 24pt" value="{{answer}}" size="3">
-                <label for "power" style="font-size: 24pt">x10</label>
-                <sup style="vertical-align: 1.2em"><input name="power" type="text" style="font-size: 16pt" value="{{power}}" size="1"></sup></br>
+                <label for "exponent" style="font-size: 24pt">x10</label>
+                <sup style="vertical-align: 1.2em"><input name="exponent" type="text" style="font-size: 16pt" value="{{exponent}}" size="1"></sup></br>
             {% else %}
-                <label for "answer" style="font-size: 24pt">{{value}}x10<sup style="vertical-align: 0.5em">{{power}}</sup>= </label>
+                <label for "answer" style="font-size: 24pt">{{sciValue}}x10<sup style="vertical-align: 0.5em">{{power}}</sup>= </label>
                 <input name="answer" type="text" style="font-size: 24pt" value="{{answer}}" size="9"></br>
             {% endif %}
 
@@ -27,9 +27,13 @@
             {% endfor %}
             </br></br>
             <input name="value" type="hidden" value="{{value}}">
+            <input name="sciNot" type="hidden" value="{{sciNot}}">
+            <input name="power" type="hidden" value="{{power}}">
+            <input name="sciValue" type="hidden" value="{{sciValue}}">
+            <input class="btn btn-success" type="submit" value="Check Answer">
         </form>
         {% endwith %}
-        <p style="font-size: 16pt; color:purple">(Hit 'Return' or 'Enter' to check your answer)</p></br>
+        </br>
         <a class="btn btn-primary" href="scinotation" role="button">Next Practice Problem</a>
         </br></br>
         <div>
