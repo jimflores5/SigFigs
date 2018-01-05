@@ -3,12 +3,11 @@
 {% block content %}
     <div class='wrapper text-center'>
         <h1><u>Counting Significant Figures</u></h1>
-        <h2>Identify the number of significant figures in: {{value}}</h2>
-        <p style="font-size: 16pt">(Hit 'Return' or 'Enter' to check your answer)</p>
+        <h2>Identify the number of significant figures in: <span style="color:blue">{{value}}</span></h2></br>
         {% with messages = get_flashed_messages(with_categories=True) %} 
         <form action="/countingsf" method="post">
-            <label for "answer" style="font-size: 14pt"># of sig figs: </label>
-            <input name="answer" type="text" value="{{answer}}"></br>
+            <label for "answer" style="font-size: 16pt; color:blue"># of sig figs: </label>
+            <input name="answer" type="text" value="{{answer}}" style="font-size: 16pt" size = "1"></br>
             {% for category,message in messages %}
                 <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
             {% endfor %}
@@ -17,6 +16,7 @@
             <input name="value" type="hidden" value="{{value}}">
         </form>
         {% endwith %}
+        <p style="font-size: 16pt; color:purple">(Hit 'Return' or 'Enter' to check your answer)</p>
         </br>
         <a class="btn btn-primary" href="countingsf" role="button">Next Practice Number</a>
         </br></br>

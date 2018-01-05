@@ -8,19 +8,15 @@ def MakeNumber(sigFigs, power):
         value = "0."+ -(power+1)*"0" + random.choice(firstDigit)
         for digit in range(sigFigs-1):
             value += random.choice(allDigits)
-    
         return value
     elif sigFigs - power < 2:
         value = random.choice(firstDigit)
-
         for digit in range(sigFigs-1):
             if digit == sigFigs-2:
                 value += random.choice(firstDigit)
             else:
                 value += random.choice(allDigits)
-                
         value += (power-sigFigs+1)*"0"
-
         return value
     else:
         value = random.choice(firstDigit)
@@ -84,6 +80,32 @@ def CheckRounding(result, sigFigs):
             return True
         else:
             return False
+
+def ApplySciNotation(result, sigFigs):
+    if result[0] == "0":
+        for x in range(2, len(result)):
+            if result[x] != "0":
+                startHere = x
+                if sigFigs > 1:
+                    sciNot = result[x]+"."
+                else:
+                    sciNot = result[x]
+                break
+        for digit in range(startHere+1,len(result)):
+            sciNot += result[digit]
+    elif result.find(".") >= 0:
+        decimalIndex = result.find(".")
+        sciNot = result[0]+"."
+        for x in range(1,sigFigs+1):
+            if result[x] != ".":
+                sciNot += result[x]
+    else:
+        sciNot = result[0]
+        if sigFigs > 1:
+            sciNot += "."        
+        for x in range(1,sigFigs):
+            sciNot += result[x]
+    return sciNot
 
 def Main():
     for x in range(4):

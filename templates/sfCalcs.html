@@ -3,22 +3,22 @@
 {% block content %}
     <div class='wrapper text-center'>
         <h1><u>Calculations with Significant Figures</u></h1>
-        <h2>Complete the following calculation.  Round the answer to the proper number of significant figures.</h2>
-        <p style="font-size: 16pt">(Hit 'Return' or 'Enter' to check your answer)</p>
+        <h2>Complete the following calculation.</h2>
+        <h2 style="color:blue">Round your answer to the proper number of significant figures.</h2>
         {% if operation == '/' %}
-            <h3><u>{{value1}}</u></h3>
-            <h3>{{value2}}</h3>
+            <p style="font-size: 24pt"><u>{{value1}}</u></p>
+            <p style="font-size: 24pt">{{value2}}</p>
         {% elif operation == 'x' %}
-            <h3>{{value1}}</h3>
-            <h3><u>{{operation}} {{value2}}</u></h3>
+            <p style="font-size: 24pt">{{value1}}</p>
+            <p style="font-size: 24pt"><u>{{operation}} {{value2}}</u></p>
         {% else %}
-            <h3> {{value1}}</h3>
-            <h3><u>{{operation}} {{value2}}</u></h3>
+            <p style="font-size: 24pt">{{value1}}</p>
+            <p style="font-size: 24pt"><u>{{operation}} {{value2}}</u></p>
         {% endif %}
         {% with messages = get_flashed_messages(with_categories=True) %} 
         <form action="/sfcalcs" method="post">
-            <label for "answer" style="font-size: 14pt">Answer: </label>
-            <input name="answer" type="text" value="{{answer}}"></br>
+            <label for "answer" style="font-size: 16pt; color:blue">Answer: </label>
+            <input name="answer" type="text" value="{{answer}}" style="font-size: 16pt" size="10"></br>
             {% for category,message in messages %}
                 <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
             {% endfor %}
@@ -29,6 +29,7 @@
             <input name="operation" type="hidden" value="{{operation}}">
         </form>
         {% endwith %}
+        <p style="font-size: 16pt; color:purple">(Hit 'Return' or 'Enter' to check your answer)</p>
         </br>
         <a class="btn btn-primary" href="sfcalcs" role="button">Next Practice Problem</a>
         </br></br>
