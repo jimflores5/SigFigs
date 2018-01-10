@@ -17,8 +17,8 @@
         {% endif %}
         {% with messages = get_flashed_messages(with_categories=True) %} 
         <form action="/sfcalcs" method="post">
-            <label for "answer" style="font-size: 16pt; color:blue">Answer: </label>
-            <input name="answer" type="text" value="{{answer}}" style="font-size: 16pt" size="10"></br>
+            <label for "answer" style="font-size: 18pt; color:blue">Answer: </label>
+            <input name="answer" type="text" value="{{answer}}" style="font-size: 18pt" size="10"></br>
             {% for category,message in messages %}
                 <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
             {% endfor %}

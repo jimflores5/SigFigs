@@ -62,36 +62,3 @@ def divideValues(value1, sf1, value2, sf2):
     result = RoundValue(quotient, sigFigs)
 
     return result
-    
-"""for trials in range(5):
-    operation = random.randrange(4)
-    if operation <= 2:
-        sigFigs1 = random.randrange(1,7)
-        power1 = random.randrange(-3,2)
-        value1 = MakeNumber(sigFigs1,power1)
-        sigFigs2 = random.randrange(1,7)
-        power2 = random.randrange(-3,2)
-        value2 = MakeNumber(sigFigs2,power2)
-    else:
-        sigFigs1 = random.randrange(1,7)
-        power1 = random.randrange(-2,3)
-        value1 = MakeNumber(sigFigs1,power1)
-        sigFigs2 = random.randrange(1,7)
-        power2 = random.randrange(-2,3)
-        value2 = MakeNumber(sigFigs2,power2)
-
-    if operation == 0:
-        result = addValues(value1,value2)
-        print("{0} {1} {2} = {3}".format(value1,operators[operation],value2, result),"\n")
-    elif operation == 1:
-        result = subtractValues(value1,value2)
-        print("{0} {1} {2} = {3}".format(value1,operators[operation],value2, result),"\n")
-    elif operation == 2:
-        result = multiplyValues(value1,sigFigs1,value2,sigFigs2)
-        print("{0} {1} {2} = {3}".format(value1,operators[operation],value2, result),"\n")
-    elif float(value1)/float(value2)<1e-4:
-        result = divideValues(value2,sigFigs2,value1,sigFigs1)
-        print("{0} {1} {2} = {3}".format(value2,operators[operation],value1, result),"\n")
-    else:
-        result = divideValues(value1,sigFigs1,value2,sigFigs2)
-        print("{0} {1} {2} = {3}".format(value1,operators[operation],value2, result),"\n")"""
