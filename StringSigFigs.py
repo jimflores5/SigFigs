@@ -1,5 +1,11 @@
 import random
 
+class Number():
+    def __init__(self, sigFigs, power):
+        self.sigFigs = sigFigs
+        self.power = power
+        self.value = MakeNumber(sigFigs, power)
+
 def MakeNumber(sigFigs, power):
     allDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     firstDigit = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
