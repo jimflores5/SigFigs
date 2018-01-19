@@ -20,10 +20,10 @@ def countingsf():
         value = request.form['value']
         if answer==actualSigFigs:
             flash('Correct!  :-)', 'correct')
-            return render_template('countingSigFigs.html', value=value, sigFigs = actualSigFigs, answer = answer)
         else:
             flash('Try again.', 'error')
-            return render_template('countingSigFigs.html',value=value, sigFigs = actualSigFigs)
+        
+        return render_template('countingSigFigs.html', value=value, sigFigs = actualSigFigs, answer = answer)
 
     sigFigs = random.randrange(1,7)
     power = random.randrange(-5,9)
@@ -39,10 +39,10 @@ def roundingsf():
         roundedValue = RoundValue(origValue, sigFigs)
         if CheckAnswer(roundedValue, answer):
             flash('Correct!  :-)', 'correct')
-            return render_template('roundingSigFigs.html', value=origValue, sigFigs = sigFigs, answer = answer)
         else:
             flash('Try again.', 'error')
-            return render_template('roundingSigFigs.html',value=origValue, sigFigs = sigFigs, answer = answer)
+        
+        return render_template('roundingSigFigs.html', value=origValue, sigFigs = sigFigs, answer = answer)
     
     iffyValue = True
     while iffyValue:
@@ -65,10 +65,10 @@ def sfcalcs():
         operation = request.form['operation']
         if CheckAnswer(result, answer):
             flash('Correct!  :-)', 'correct')
-            return render_template('sfCalcs.html',title="Calculations with Sig Figs", value1 = value1, value2 = value2, result = result, answer = answer, operation=operation)
         else:
             flash('Try again.', 'error')
-            return render_template('sfCalcs.html',title="Calculations with Sig Figs", value1 = value1, value2 = value2, result = result, answer = answer, operation=operation)
+        
+        return render_template('sfCalcs.html',title="Calculations with Sig Figs", value1 = value1, value2 = value2, result = result, answer = answer, operation=operation)
 
     operators = ['+', '-', 'x', '/']
     operation = random.randrange(4) #Randomly select +, -, * or / using integers 0 - 3, respectively.
@@ -129,9 +129,9 @@ def scinotation():
             if CheckAnswer(power, exponent) and CheckAnswer(sciValue,answer):
                 flash('Correct!  :-)', 'correct')
             elif CheckAnswer(power, exponent) and not CheckAnswer(sciValue,answer):
-                flash('Correct power.  Wrong decimal number.', 'error')
+                flash('Correct power.  Wrong decimal value.', 'error')
             elif CheckAnswer(sciValue,answer) and not CheckAnswer(power, exponent):
-                flash('Correct decimal number.  Wrong power.', 'error')
+                flash('Correct decimal value.  Wrong power.', 'error')
             else:
                 flash('Both entries are incorrect.  Try again.', 'error')
                 

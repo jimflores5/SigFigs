@@ -131,3 +131,4 @@ for x in range(6):
 #TODO - 1) Add interactive tutorial pages.  Perhaps with short videos?
 #       2) Develop measurement practice (interactive).
 #       3) Create a Number class and refactor sig fig code to use it instead of separate value, sigFig & power variables.
+#       4) Ignore #3.  Using the Number class did not actually streamline the code much at all.
