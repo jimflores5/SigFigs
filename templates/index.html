@@ -1,14 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class='wrapper text-center'>
-        <h1><u>Significant Figures</u></h1>
-        <h2>Select a practice option:</h2>
-        <div class=btn-group-vertical>
-            <a class="btn btn-primary" href="countingsf" role="button">Counting Significant Figures</a>
-            <a href="roundingsf" class="btn btn-primary" role="button">Rounding to Significant Figures</a>
-            <a href="scinotation" class="btn btn-primary" role="button">Scientific Notation with Significant Figures</a>
-            <a href="sfcalcs" class="btn btn-primary" role="button">Calculations with Significant Figures</a>
+    <div class="container">
+        <div class = 'row'>
+            <div class='col'>
+                <h1 align="center"><u>Significant Figures</u></h1>
+                <div class="row">
+                    <div class="col">
+                        <div class = 'wrapper text-center'>
+                            <h1><u>Tutorials</u></h1>
+                            <h2>Select a topic:</h2>
+                            <div class=btn-group-vertical>
+                                <a class="btn btn-success" href="/" role="button">Counting Significant Figures</a>
+                                <a href="/" class="btn btn-success" role="button">Rounding to Significant Figures</a>
+                                <a href="/" class="btn btn-success" role="button">Scientific Notation</a>
+                                <a href="/" class="btn btn-success" role="button">Calculations with Significant Figures</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = 'col'>
+                        <div class='wrapper text-center'>
+                            <h1><u>Practice</u></h1>
+                            <h2>Select an option:</h2>
+                            <div class=btn-group-vertical>
+                                <a class="btn btn-primary" href="countingsf" role="button">Counting Significant Figures</a>
+                                <a href="roundingsf" class="btn btn-primary" role="button">Rounding to Significant Figures</a>
+                                <a href="scinotation" class="btn btn-primary" role="button">Scientific Notation with  Figures</a>
+                                <a href="sfcalcs" class="btn btn-primary" role="button">Calculations with Significant Figures</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}  
