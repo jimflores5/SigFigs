@@ -21,7 +21,7 @@ def countingsf():
         if answer==actualSigFigs:
             flash('Correct!  :-)', 'correct')
         else:
-            flash('Try again.', 'error')
+            flash('Try again, or click here to reveal the answer.', 'error')
         
         return render_template('countingSigFigs.html', value=value, sigFigs = actualSigFigs, answer = answer)
 
