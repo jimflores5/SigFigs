@@ -9,7 +9,18 @@
             <label for "answer" style="font-size: 16pt; color:blue"># of sig figs: </label>
             <input name="answer" type="text" value="{{answer}}" style="font-size: 16pt" size = "1"></br>
             {% for category,message in messages %}
-                <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                {% if category != 'error' %}
+                    <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                {% else %}
+                    <div class="btn-group dropright">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14pt; color:red">
+                            {{message}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <p class="dropdown-item" style="font-size: 14pt; color:red">{{sigFigs}}</p>
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
             </br></br>
             <input name="actualSigFigs" type="hidden" value="{{sigFigs}}">
