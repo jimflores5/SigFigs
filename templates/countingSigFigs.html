@@ -10,6 +10,14 @@
             <input name="answer" type="text" value="{{answer}}" style="font-size: 16pt" size = "1"></br>
             {% for category,message in messages %}
                 <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Reveal answer
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <p class="dropdown-item">{{sigFigs}}</p>
+                    </div>
+                </div>
             {% endfor %}
             </br></br>
             <input name="actualSigFigs" type="hidden" value="{{sigFigs}}">
