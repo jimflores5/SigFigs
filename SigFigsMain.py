@@ -40,9 +40,9 @@ def roundingsf():
         if CheckAnswer(roundedValue, answer):
             flash('Correct!  :-)', 'correct')
         else:
-            flash('Try again.', 'error')
+            flash('Try again, or click here to reveal the answer.', 'error')
         
-        return render_template('roundingSigFigs.html', value=origValue, sigFigs = sigFigs, answer = answer)
+        return render_template('roundingSigFigs.html', value=origValue, sigFigs = sigFigs, answer = answer, roundedValue=roundedValue)
     
     iffyValue = True
     while iffyValue:
@@ -66,7 +66,7 @@ def sfcalcs():
         if CheckAnswer(result, answer):
             flash('Correct!  :-)', 'correct')
         else:
-            flash('Try again.', 'error')
+            flash('Try again, or click here to reveal the answer.', 'error')
         
         return render_template('sfCalcs.html',title="Calculations with Sig Figs", value1 = value1, value2 = value2, result = result, answer = answer, operation=operation)
 
@@ -118,7 +118,7 @@ def scinotation():
             if CheckAnswer(result, answer):
                 flash('Correct!  :-)', 'correct')
             else:
-                flash('Try again.', 'error')
+                flash('Try again, or click here to reveal the answer.', 'error')
             return render_template('scientificNotation.html',title="Scientific Notation", value = result, sciValue=sciValue, power = power, sciNot = True, answer = answer)
         else:                            #Given a value in standard notation, the user eneters a number in sci notation.
             answer = request.form['answer']
@@ -133,7 +133,7 @@ def scinotation():
             elif CheckAnswer(sciValue,answer) and not CheckAnswer(power, exponent):
                 flash('Correct decimal value.  Wrong power.', 'error')
             else:
-                flash('Both entries are incorrect.  Try again.', 'error')
+                flash('Both entries are incorrect.  Try again, or click to reveal the answer.', 'error')
                 
             return render_template('scientificNotation.html',title="Scientific Notation", value = result, sciValue=sciValue, power = power, sciNot = False, answer = answer, exponent = exponent)
 

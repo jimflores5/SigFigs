@@ -4,7 +4,7 @@
     <div class='wrapper text-center'>
         <h1><u>Practice with Scientific Notation</u></h1>
         {% if not sciNot %}
-            <h2>Convert the following value into <span style="color:rgba(255, 166, 0, 0.966)">scientific notation</span>.</h2>
+            <h2>Convert the following value into <span style="color:rgb(216, 117, 24)">scientific notation</span>.</h2>
         {% else %}
             <h2>Convert the following value into <span style="color:rgb(228, 60, 228)">standard notation</span>.</h2>
         {% endif %}
@@ -23,7 +23,27 @@
             {% endif %}
 
             {% for category,message in messages %}
-                <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                {% if category != 'error' %}
+                    <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                {% elif sciNot == True %}
+                    <div class="btn-group dropright">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14pt; color:red">
+                            {{message}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <p class="dropdown-item" style="font-size: 24pt; color:red">{{value}}</p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="btn-group dropright">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14pt; color:red">
+                            <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <p class="dropdown-item" style="font-size: 24pt; color:red">{{sciValue}}x10<sup style="vertical-align: 0.5em">{{power}}</sup></p>
+                        </div>
+                    </div>
+                {% endif %}
             {% endfor %}
             </br></br>
             <input name="value" type="hidden" value="{{value}}">

@@ -20,8 +20,19 @@
             <label for "answer" style="font-size: 18pt; color:blue">Answer: </label>
             <input name="answer" type="text" value="{{answer}}" style="font-size: 18pt" size="10"></br>
             {% for category,message in messages %}
+            {% if category != 'error' %}
                 <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
-            {% endfor %}
+            {% else %}
+                <div class="btn-group dropright">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14pt; color:red">
+                        {{message}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <p class="dropdown-item" style="font-size: 24pt; color:red">{{result}}</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
             </br></br>
             <input name="result" type="hidden" value="{{result}}">
             <input name="value1" type="hidden" value="{{value1}}">
