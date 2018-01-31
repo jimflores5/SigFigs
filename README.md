@@ -9,8 +9,6 @@
 ### Features
  - Interactive tutorials to help introduce students to the new skills.
  - "Infinite practice" options that provide immediate feedback to help students master the new skills.
- - Optional performance tracker (e.g. "80% proficient") to help students gauge their level of mastery.
- - Optional homework setting to let teachers assign and see the results of student work (will require login and/or messaging functionality).
  
 ### Technologies
  - Python
