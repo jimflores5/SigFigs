@@ -146,5 +146,9 @@ def scinotation():
     else:                         #Otherwise ('1'), ask the user to change standard notation into sci notation.
         return render_template('scientificNotation.html',title="Scientific Notation", value=value, sciValue=sciValue, power = power, sciNot = False)
 
+@app.route('/sftutorial')
+def sftutorial():
+    return render_template('sftutorial.html',title="Sig Fig Tutorial")
+
 if __name__ == '__main__':
     app.run()
