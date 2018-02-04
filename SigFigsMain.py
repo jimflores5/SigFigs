@@ -146,13 +146,25 @@ def scinotation():
     else:                         #Otherwise ('1'), ask the user to change standard notation into sci notation.
         return render_template('scientificNotation.html',title="Scientific Notation", value=value, sciValue=sciValue, power = power, sciNot = False)
 
-@app.route('/sftutorial1')
+@app.route('/sftutorial1', methods=['POST', 'GET'])
 def sftutorial1():
     return render_template('sftutorial1.html',title="Sig Fig Tutorial", page = 1)
 
-@app.route('/sftutorial2')
+@app.route('/sftutorial2', methods=['POST', 'GET'])
 def sftutorial2():
     return render_template('sftutorial2.html',title="Sig Fig Tutorial", page = 2)
+
+@app.route('/sftutorial3', methods=['POST', 'GET'])
+def sftutorial3():
+    return render_template('sftutorial3.html',title="Sig Fig Tutorial", page = 3)
+
+@app.route('/sftutorial4', methods=['POST', 'GET'])
+def sftutorial4():
+    return render_template('sftutorial4.html',title="Sig Fig Tutorial", page = 4)
+
+@app.route('/sftutorial5', methods=['POST', 'GET'])
+def sftutorial5():
+    return render_template('sftutorial5.html',title="Sig Fig Tutorial", page = 5)
 
 if __name__ == '__main__':
     app.run()

@@ -33,7 +33,11 @@
                     {% else %}
                         <a class="btn btn-secondary mr-2" href="/sftutorial{{page-1}}" role="button">&laquo; Back</a>
                     {% endif %}
-                    <a class="btn btn-secondary mr-2" href="/sftutorial{{page+1}}" role="button">Next &raquo;</a>
+                    {% if page == 5 %}
+                        <button type="button" class="btn btn-secondary mr-2" disabled>Next &raquo;</button>
+                    {% else %}
+                        <a class="btn btn-secondary mr-2" href="/sftutorial{{page+1}}" role="button">Next &raquo;</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
