@@ -2,5 +2,36 @@
 
 {% block content %}
     <h2 class = 'wrapper text-center mr-5'>How do we identify the number of <span style="color:blue">significant figures</span> in a measurement?</h2>
-    <h3>Rutabagas on page 2!</h3>
+    <ul>
+        <li style="font-size: 18pt"><u>First Rule</u>: <span style="color:blue">All non-zero digits are significant.</span></li>
+        <div class="container col row justify-content-start ml-3" style="width:500px">
+            <li style="font-size: 14pt">
+                <div class="row justify-content-start text-center">
+                    <div class="col"><u>Examples</u>:</div>
+                    <div class="col">12 g</div>
+                    <div class="col">43.7 mL</div>
+                    <div class="col">5.327 m</div>
+                    <div class="w-100"></div>
+                    <div class="col"></div>
+                    <div class="col" style="color:blue">2 sig figs</div>
+                    <div class="col" style="color:blue">3 sig figs</div>
+                    <div class="col" style="color:blue">4 sig figs</div>
+                </div>
+            </li>
+        </div>
+    </ul></br>
+    <ul>
+        <li style="font-size: 18pt"><u>Second Rule</u>: Examine the values below.  The <mark class="alert-sm alert-success">highlighted</mark> zeros are considered 'significant'.</li>
+    </ul>
+    <figure class="figure">
+        <img src="{{url_for('static', filename='1st0example.png')}}" class="figure-img img-fluid ml-4" style="width:70%; height:70%">
+    </figure>
+    <p class = "ml-4" style="font-size: 18pt; color:purple"><u>Explain</u>: What makes the highlighted zeros significant?</p>
+    <form>
+        <div class="form-group">
+            <textarea class="form-control ml-4" id="firstZeroRule" rows="2" style="width:800px" placeholder="Enter your rule here."></textarea>
+        </div>
+        <span class="container"><input class="btn btn-success" type="submit" value="Submit"></span>
+    </form>
+    
 {% endblock %}
