@@ -72,14 +72,14 @@ def sfcalcs():
 
     operators = ['+', '-', 'x', '/']
     operation = random.randrange(4) #Randomly select +, -, * or / using integers 0 - 3, respectively.
-    if operation <= 2:      #For +, - or *, create 2 values between 0.001 and 90 with 1 - 6 sig figs.
+    if operation < 2:      #For + and -, create 2 values between 0.001 and 90 with 1 - 6 sig figs.
         sigFigs1 = random.randrange(1,7)
         power1 = random.randrange(-3,2)
         value1 = MakeNumber(sigFigs1,power1)
         sigFigs2 = random.randrange(1,7)
         power2 = random.randrange(-3,2)
         value2 = MakeNumber(sigFigs2,power2)
-    else:                   #For /, create 2 values between 0.01 and 900 with 1 - 6 sig figs.
+    else:                   #For * and /, create 2 values between 0.01 and 900 with 1 - 6 sig figs.
         sigFigs1 = random.randrange(1,7)
         power1 = random.randrange(-2,3)
         value1 = MakeNumber(sigFigs1,power1)
