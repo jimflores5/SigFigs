@@ -1,6 +1,63 @@
 {% extends "sftutorialbase.html" %}
 
 {% block content %}
-    <h2 class = 'wrapper text-center mr-5'><u>Advanced Counting Tasks (optional):</u></h2>
-    <h3>Rutabagas on page 5!</h3>
+    <h2 class = 'ml-3'><u>Advanced Counting Tasks (optional)</u>:</h2>
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+            <h3 class="mb-0" style="color:green">
+                A) The number "300.0" has four significant figures, but "300" has only one.  
+                <button style="font-size:16pt" class="btn btn-outline-success collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Explain why.
+                </button>
+            </h3>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='AdvancedCounting1.jpeg')}}" class="figure-img img-fluid">
+                </figure>
+            </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+            <h3 class="mb-0" style="color:blue">
+                    B) How do we deal with significant figures AND scientific notation?
+                <button style="font-size:16pt" class="btn btn-outline-primary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Explore...
+                </button>
+            </h3>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='AdvancedCounting2.jpeg')}}" class="figure-img img-fluid">
+                </figure>
+            </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+            <h3 class="mb-0" style="color:red">
+                    C) What if the meaurement "200 g" has two significant figures?  How do we show this?
+                <button style="font-size:16pt" class="btn btn-outline-danger collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Ambiguous zeros?
+                </button>
+            </h3>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='AdvancedCounting3.jpeg')}}" class="figure-img img-fluid">
+                </figure>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="wrapper text-left ml-3">
+        <h3>
+            <u>Now take the next step</u>:
+            <a class="btn btn-success ml-2" href="/countingsf" role="button">Practice Counting Sig Figs</a>
+        </h3>
+    </div>
 {% endblock %}
