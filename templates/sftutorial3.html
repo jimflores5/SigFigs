@@ -3,8 +3,8 @@
 {% block content %}
     <h2 class = 'wrapper text-center mr-5'>How do we identify the number of <span style="color:blue">significant figures</span> in a measurement?</h2>
     <ul>
-        <li style="font-size: 18pt"><u>First Rule</u>: <span style="color:blue">All non-zero digits are significant.</span></li>
-        <li style="font-size: 18pt"><u>Second Rule</u>: <span style="color:green">{{firstZeroRule}}</span></li>
+        <li style="font-size: 18pt"><u>First Rule</u>: <span style="color:green">All non-zero digits are significant.</span></li>
+        <li style="font-size: 18pt"><u>Second Rule</u>: <span style="color:blue">{{firstZeroRule}}</span></li>
     </ul>
     <ul>
         <li style="font-size: 18pt"><u>Third Rule</u>: Examine the values below.  The <span style="color:red"><em>RED BOXED</em></span> zeros are considered 'significant'.</li>
@@ -12,12 +12,12 @@
     <figure class="figure">
         <img src="{{url_for('static', filename='2nd0example.png')}}" class="figure-img img-fluid ml-4" style="width:40%; height:40%">
     </figure>
-    <p class = "ml-4" style="font-size: 18pt; color:purple"><u>Explain</u>: What makes the boxed zeros significant? (There are 2 factors to note).</p>
+    <p class = "ml-4" style="font-size: 18pt; color:purple"><u>Explain</u>: What makes the boxed zeros significant? (There are TWO factors to notice).</p>
     {% with messages = get_flashed_messages(with_categories=True) %} 
         {% if not secondHalf %}
             <form action="/sftutorial3" method="post">
                 <div class="form-group">
-                    <input class="form-control ml-4" name = "secondZeroRule" id="secondZeroRule" rows="2" style="width:800px" placeholder="The zeros... AND..." value="{{secondZeroRule}}">
+                    <input class="form-control ml-4" name = "secondZeroRule" id="secondZeroRule" rows="2" style="width:800px" placeholder="Zeros that... AND..." value="{{secondZeroRule}}">
                 {% for category,message in messages %}
                     <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
                 {% endfor %}
@@ -28,20 +28,32 @@
     {% endwith %}
     {% if secondHalf %}
         <div class="container justify-content-between ml-3">
-            <div>
-                <ul>
-                    <li style="font-size: 18pt"><u>Your Suggestion</u>: {{secondZeroRule}}</li>
+            <div class="row">
+                <div class="col-7">
                     <ul>
-                        <li style="font-size: 16pt">Common Response #1.</li>
-                        <li style="font-size: 16pt">Common Response #2.</li>
-                        <li style="font-size: 16pt">Common Response #3.</li>
+                        <li style="font-size: 18pt"><u>Your rule</u>: {{secondZeroRule}}</li>
+                        <li style="font-size: 18pt; color:red"><u>Common student responses</u>:</li>
+                        <ul style="color:red">
+                            <li style="font-size: 16pt">Zeros at the end of the number AND after the decimal.</li>
+                            <li style="font-size: 16pt">Zeros that are after the decimal AND follow a non-zero digit.</li>
+                            <li style="font-size: 16pt">Trailing zeros after the decimal.</li>
+                        </ul>
                     </ul>
-                </ul>
-            </div>
-            <div class="wrapper text-center">
-                <h3 class = "ml-3">How well did you identify BOTH conditions that make these zeros significant?</h3>
-                <a class="btn btn-success ml-3" href="/sftutorial4" role="button">Good</a>
-                <a class="btn btn-danger ml-3" href="/sftutorial3" role="button">Try again</a>
+                </div>
+                <div class="col-5 wrapper text-center">
+                    <button  style="font-size: 16pt" class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Compare your rule to the common responses, then click here.
+                    </button>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <h3>How well does your answer match other students' ideas?</h3>
+                            <p>
+                                <a class="btn btn-success" href="/sftutorial4" role="button">Good</a>
+                                <a class="btn btn-danger ml-3" href="/sftutorial3" role="button">Try again</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     {% endif %}

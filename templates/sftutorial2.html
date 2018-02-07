@@ -31,7 +31,7 @@
         {% if not secondHalf %}
             <form action="/sftutorial2" method="post">
                 <div class="form-group">
-                    <input class="form-control ml-4" name = "firstZeroRule" id="firstZeroRule" rows="2" style="width:800px" placeholder="The zeros..." value="{{answer}}">
+                    <input class="form-control ml-4" name = "firstZeroRule" id="firstZeroRule" rows="2" style="width:800px" placeholder="Zeros that..." value="{{answer}}">
                 {% for category,message in messages %}
                     <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
                 {% endfor %}
@@ -43,20 +43,30 @@
     {% if secondHalf %}
         <div class="container justify-content-between ml-3">
             <div class="row">
-                <div class="col-5">
+                <div class="col-6">
                     <ul>
-                        <li style="font-size: 18pt"><u>Your Suggestion</u>: {{answer}}</li>
-                        <ul>
-                            <li style="font-size: 16pt">Common Response #1.</li>
-                            <li style="font-size: 16pt">Common Response #2.</li>
-                            <li style="font-size: 16pt">Common Response #3.</li>
+                        <li style="font-size: 18pt"><u>Your rule</u>: {{answer}}</li>
+                        <li style="font-size: 18pt; color:red"><u>Common student responses</u>:</li>
+                        <ul style="color:red">
+                            <li style="font-size: 16pt">Zeros that come between other sig figs.</li>
+                            <li style="font-size: 16pt">Zeros that are surrounded by other sig figs.</li>
+                            <li style="font-size: 16pt">A 'zero sandwich'.</li>
                         </ul>
                     </ul>
                 </div>
-                <div class="col-7 wrapper text-center">
-                    <h3>How well does your answer match the other students' ideas?</h3>
-                    <a class="btn btn-success" href="/sftutorial3" role="button">Good</a>
-                    <a class="btn btn-danger ml-3" href="/sftutorial2" role="button">Try again</a>
+                <div class="col-6 wrapper text-center">
+                    <button  style="font-size: 16pt" class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Compare your rule to the common responses, then click here.
+                    </button>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <h3>How well does your answer match other students' ideas?</h3>
+                            <p>
+                                <a class="btn btn-success" href="/sftutorial3" role="button">Good</a>
+                                <a class="btn btn-danger ml-3" href="/sftutorial2" role="button">Try again</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

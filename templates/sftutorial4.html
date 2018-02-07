@@ -3,16 +3,54 @@
 {% block content %}
     <h2 class = 'wrapper text-center mr-5'>How do we identify the number of <span style="color:blue">significant figures</span> in a measurement?</h2>
     <ul>
-        <li style="font-size: 18pt"><u>First Rule</u>: <span style="color:blue">All non-zero digits are significant.</span></li>
-        <li style="font-size: 18pt"><u>Second Rule</u>: <span style="color:green">{{firstZeroRule}}</span></li>
-        <li style="font-size: 18pt"><u>Third Rule</u>: <span style="color:indigo">{{secondZeroRule}}</span></li>
+        <li style="font-size: 18pt"><u>First Rule</u>: <span style="color:green">All non-zero digits are significant.</span></li>
+        <li style="font-size: 18pt"><u>Second Rule</u>: <span style="color:blue">{{firstZeroRule}}</span></li>
+        <li style="font-size: 18pt"><u>Third Rule</u>: <span style="color:red">{{secondZeroRule}}</span></li>
     </ul>
 
     <p class = "ml-4" style="font-size: 18pt;"><u>Check Yourself</u> - Identify the number of significant figures in each of the following:</p>
     <ol style="font-size: 18pt" class="ml-3">
-        <li>0.0030700 has _____ significant figures, according to rules _____.</li>
-        <li>10,027,800 has _____ significant figures, according to rules _____.</li>
-        <li>5.00 has _____ significant figures, according to rules _____.</li>
+        <li style="color:blue">0.0030700 has  
+            <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" data-html="true" title="five (0.00<u>30700</u>)">
+                ___________
+            </button>
+            significant figures according to rules 
+            <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="1, 2 and 3">
+                ___________
+            </button>.
+        </li><br/>
+        <li style="color:green">10,020,000 has 
+            <button style="color:green" type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" data-html="true" title="four (<u>10,02</u>0,00)">
+                ___________
+            </button>
+            significant figures according to rules 
+            <button style="color:green" type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="1 and 2">
+                ___________
+            </button>.
+        </li><br/>
+        <li style="color:purple">5.00 has 
+            <button style="color:purple" type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" data-html="true" title="three (<u>5.00</u>)">
+                ___________
+            </button>
+            significant figures according to rules 
+            <button style="color:purple" type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="1 and 3">
+                ___________
+            </button>.
+        </li>
     </ol>
-
+    <p class = "ml-5" style="font-size: 18pt; color:brown">(Hover over the lines to check your thinking).</p>
+    <div class="wrapper text-center">
+        <button style="font-size: 16pt" class="btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Click here when you are ready to move on...
+        </button>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <h3><u>Choose your next step</u>:
+                    <a class="btn btn-success ml-2" href="/countingsf" role="button">Practice Conting Sig Figs</a>
+                    <a class="btn btn-primary ml-2" href="/" role="button">Main Menu</a>
+                    <a class="btn btn-danger ml-2" href="/sftutorial5" role="button">Advanced Counting</a>
+                </h3>
+            </div>
+        </div>
+    </div>
 {% endblock %}
