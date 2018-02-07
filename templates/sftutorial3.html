@@ -2,5 +2,47 @@
 
 {% block content %}
     <h2 class = 'wrapper text-center mr-5'>How do we identify the number of <span style="color:blue">significant figures</span> in a measurement?</h2>
-    <h3>Rutabagas on page 3!</h3>
+    <ul>
+        <li style="font-size: 18pt"><u>First Rule</u>: <span style="color:blue">All non-zero digits are significant.</span></li>
+        <li style="font-size: 18pt"><u>Second Rule</u>: <span style="color:green">{{firstZeroRule}}</span></li>
+    </ul>
+    <ul>
+        <li style="font-size: 18pt"><u>Third Rule</u>: Examine the values below.  The <span style="color:red"><em>RED BOXED</em></span> zeros are considered 'significant'.</li>
+    </ul>
+    <figure class="figure">
+        <img src="{{url_for('static', filename='2nd0example.png')}}" class="figure-img img-fluid ml-4" style="width:40%; height:40%">
+    </figure>
+    <p class = "ml-4" style="font-size: 18pt; color:purple"><u>Explain</u>: What makes the boxed zeros significant? (There are 2 factors to note).</p>
+    {% with messages = get_flashed_messages(with_categories=True) %} 
+        {% if not secondHalf %}
+            <form action="/sftutorial3" method="post">
+                <div class="form-group">
+                    <input class="form-control ml-4" name = "secondZeroRule" id="secondZeroRule" rows="2" style="width:800px" placeholder="The zeros... AND..." value="{{secondZeroRule}}">
+                {% for category,message in messages %}
+                    <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                {% endfor %}
+                </div>
+                <span class="container"><input class="btn btn-success" type="submit" value="Submit"></span>
+            </form>
+        {% endif %}
+    {% endwith %}
+    {% if secondHalf %}
+        <div class="container justify-content-between ml-3">
+            <div>
+                <ul>
+                    <li style="font-size: 18pt"><u>Your Suggestion</u>: {{secondZeroRule}}</li>
+                    <ul>
+                        <li style="font-size: 16pt">Common Response #1.</li>
+                        <li style="font-size: 16pt">Common Response #2.</li>
+                        <li style="font-size: 16pt">Common Response #3.</li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="wrapper text-center">
+                <h3 class = "ml-3">How well did you identify BOTH conditions that make these zeros significant?</h3>
+                <a class="btn btn-success ml-3" href="/sftutorial4" role="button">Good</a>
+                <a class="btn btn-danger ml-3" href="/sftutorial3" role="button">Try again</a>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

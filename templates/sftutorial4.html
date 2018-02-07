@@ -2,5 +2,17 @@
 
 {% block content %}
     <h2 class = 'wrapper text-center mr-5'>How do we identify the number of <span style="color:blue">significant figures</span> in a measurement?</h2>
-    <h3>Rutabagas on page 4!</h3>
+    <ul>
+        <li style="font-size: 18pt"><u>First Rule</u>: <span style="color:blue">All non-zero digits are significant.</span></li>
+        <li style="font-size: 18pt"><u>Second Rule</u>: <span style="color:green">{{firstZeroRule}}</span></li>
+        <li style="font-size: 18pt"><u>Third Rule</u>: <span style="color:indigo">{{secondZeroRule}}</span></li>
+    </ul>
+
+    <p class = "ml-4" style="font-size: 18pt;"><u>Check Yourself</u> - Identify the number of significant figures in each of the following:</p>
+    <ol style="font-size: 18pt" class="ml-3">
+        <li>0.0030700 has _____ significant figures, according to rules _____.</li>
+        <li>10,027,800 has _____ significant figures, according to rules _____.</li>
+        <li>5.00 has _____ significant figures, according to rules _____.</li>
+    </ol>
+
 {% endblock %}

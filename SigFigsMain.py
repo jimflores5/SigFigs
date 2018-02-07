@@ -10,6 +10,7 @@ app.secret_key = 'yrtsimehc'
 
 @app.route('/')
 def index():
+    session.clear()
     return render_template('index.html',title="Sig Fig Practice")
 
 @app.route('/countingsf', methods=['POST', 'GET'])
@@ -153,24 +154,38 @@ def sftutorial1():
 @app.route('/sftutorial2', methods=['POST', 'GET'])
 def sftutorial2():
     if request.method == 'POST':
-        answerFZR = request.form['firstZeroRule']
-        session['answerFZR'] = answerFZR
+        firstZeroRule = request.form['firstZeroRule']
+        session['firstZeroRule'] = firstZeroRule
         secondHalf = True
-        if answerFZR == '':
+        if firstZeroRule == '':
             flash('Please enter a response.', 'error')
             secondHalf = False
         
-        return render_template('sftutorial2.html', answer = answerFZR, page = 2, secondHalf = secondHalf)
+        return render_template('sftutorial2.html', answer = firstZeroRule, page = 2, secondHalf = secondHalf)
 
     return render_template('sftutorial2.html',title="Sig Fig Tutorial", page = 2, secondHalf=False)
 
 @app.route('/sftutorial3', methods=['POST', 'GET'])
 def sftutorial3():
-    return render_template('sftutorial3.html',title="Sig Fig Tutorial", page = 3)
+    if request.method == 'POST':
+        firstZeroRule = session.get('firstZeroRule', None)
+        secondZeroRule = request.form['secondZeroRule']
+        session['secondZeroRule'] = secondZeroRule
+        secondHalf = True
+        if secondZeroRule == '':
+            flash('Please enter a response.', 'error')
+            secondHalf = False
+        
+        return render_template('sftutorial3.html', firstZeroRule = firstZeroRule, secondZeroRule = secondZeroRule, page = 3, secondHalf = secondHalf)
+
+    firstZeroRule = session.get('firstZeroRule', None)
+    return render_template('sftutorial3.html',title="Sig Fig Tutorial", page = 3, firstZeroRule = firstZeroRule, secondHalf=False)
 
 @app.route('/sftutorial4', methods=['POST', 'GET'])
 def sftutorial4():
-    return render_template('sftutorial4.html',title="Sig Fig Tutorial", page = 4)
+    firstZeroRule = session.get('firstZeroRule', None)
+    secondZeroRule = session.get('secondZeroRule', None)
+    return render_template('sftutorial4.html',title="Sig Fig Tutorial", page = 4, firstZeroRule=firstZeroRule, secondZeroRule=secondZeroRule)
 
 @app.route('/sftutorial5', methods=['POST', 'GET'])
 def sftutorial5():
