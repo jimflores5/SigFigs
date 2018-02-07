@@ -27,11 +27,36 @@
         <img src="{{url_for('static', filename='1st0example.png')}}" class="figure-img img-fluid ml-4" style="width:70%; height:70%">
     </figure>
     <p class = "ml-4" style="font-size: 18pt; color:purple"><u>Explain</u>: What makes the highlighted zeros significant?</p>
-    <form>
-        <div class="form-group">
-            <textarea class="form-control ml-4" id="firstZeroRule" rows="2" style="width:800px" placeholder="Enter your rule here."></textarea>
+    {% with messages = get_flashed_messages(with_categories=True) %} 
+        {% if not secondHalf %}
+            <form action="/sftutorial2" method="post">
+                <div class="form-group">
+                    <input class="form-control ml-4" name = "firstZeroRule" id="firstZeroRule" rows="2" style="width:800px" placeholder="Enter your rule here." value="{{answer}}">
+                {% for category,message in messages %}
+                    <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                {% endfor %}
+                </div>
+                <span class="container"><input class="btn btn-success" type="submit" value="Submit"></span>
+            </form>
+        {% endif %}
+    {% endwith %}
+    {% if secondHalf %}
+        <div class="container justify-content-between ml-3">
+            <div>
+                <ul>
+                    <li style="font-size: 18pt"><u>Your Suggestion</u>: {{answer}}</li>
+                    <ul>
+                        <li style="font-size: 16pt">Common Response #1.</li>
+                        <li style="font-size: 16pt">Common Response #2.</li>
+                        <li style="font-size: 16pt">Common Response #3.</li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="wrapper text-center">
+                <h3 class = "ml-3">How well does your answer match the other students' ideas?</h3>
+                <a class="btn btn-secondary ml-3" href="/sftutorial3" role="button">Good</a>
+                <a class="btn btn-secondary ml-3" href="/sftutorial2" role="button">Try again</a>
+            </div>
         </div>
-        <span class="container"><input class="btn btn-success" type="submit" value="Submit"></span>
-    </form>
-    
+    {% endif %}
 {% endblock %}
