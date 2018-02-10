@@ -2,5 +2,99 @@
 
 {% block content %}
     <h2 class = 'wrapper text-center mr-5'>What are <span style="color:blue">significant figures</span>, and why do we need them?</h2>
-    <h3>Rutabagas on page 1!</h3>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                        <h3 class="mb-0 text-center" style="color:blue"> 
+                            <button style="font-size:18pt" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Click for Ruler Examples... 
+                            </button>
+                        </h3>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <figure class="figure">
+                                    <img src="{{url_for('static', filename='1st0example.png')}}" class="figure-img img-fluid">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                        <h3 class="mb-0 text-center" style="color:blue">
+                            <button style="font-size:18pt; color:green" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Click for Scale Examples...
+                            </button>
+                        </h3>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <figure class="figure">
+                                <img src="{{url_for('static', filename='2nd0example.png')}}" class="figure-img img-fluid">
+                            </figure>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="align-self-center col-6">
+                <table class="table table-bordered text-center" style="font-size:1.5vw">
+                    <thead>
+                        <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Student A</th>
+                        <th scope="col">Student B</th>
+                        <th scope="col">Student C</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">Ruler #1</th>
+                            <td>value</td>
+                            <td>value</td>
+                            <td>value</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Ruler #2</th>
+                            <td>value</td>
+                            <td>value</td>
+                            <td>value</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Scale #1</th>
+                            <td>value</td>
+                            <td>value</td>
+                            <td>value</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">Scale #1</th>
+                            <td>value</td>
+                            <td>value</td>
+                            <td>value</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container border border-info">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <ul>
+                    <li>This is where text will appear and disappear...</li>
+                    <li>This is where text will appear and disappear...</li>
+                    <li>This is where text will appear and disappear...</li>
+                </ul>
+            </div>
+            <div class="col-6">
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='1st0example.png')}}" class="figure-img img-fluid">
+                </figure>
+            </div>
+        </div>
+    </div>
 {% endblock %}
