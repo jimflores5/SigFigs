@@ -81,19 +81,29 @@
         </div>
     </div>
 
-    <div class="container border border-info">
-        <div class="row justify-content-center">
+    <div class="container-fluid border border-info justify-content-between">
+        <div class="row">
             <div class="col-6">
-                <ul>
-                    <li>This is where text will appear and disappear...</li>
-                    <li>This is where text will appear and disappear...</li>
-                    <li>This is where text will appear and disappear...</li>
-                </ul>
+                <form action="/sftutorial1" method="post">
+                    <ul style="font-size:18pt">
+                        {% if displayText >= 1 %}
+                            <li>Significant Figures - [Definition]</li>
+                        {% endif %}
+                        {% if displayText >= 2 %}
+                            <li>Sig Figs - [vs. tool precision]</li>
+                        {% endif %}
+                        {% if displayText >= 3 %}
+                            <li>Sig Figs - [Not every digit is significant]</li>
+                        {% endif %}
+                        {% if displayText < 3 %}
+                            <input class="btn-sm btn-success" type="submit" value="More...">
+                            <input name="displayText" type="hidden" value="{{displayText}}">
+                        {% endif %}
+                    </ul>
+                </form>
             </div>
             <div class="col-6">
-                <figure class="figure">
-                    <img src="{{url_for('static', filename='1st0example.png')}}" class="figure-img img-fluid">
-                </figure>
+                <p style="font-size:18pt">Audio/voiceover link?</p>
             </div>
         </div>
     </div>

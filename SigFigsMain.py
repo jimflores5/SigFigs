@@ -149,7 +149,13 @@ def scinotation():
 
 @app.route('/sftutorial1', methods=['POST', 'GET'])
 def sftutorial1():
-    return render_template('sftutorial1.html',title="Sig Fig Tutorial", page = 1, secondHalf=False)
+    if request.method == 'POST':
+        displayText = int(request.form['displayText'])
+        displayText += 1
+    else:
+        displayText=1
+    
+    return render_template('sftutorial1.html',title="Sig Fig Tutorial", page = 1, displayText=displayText)
 
 @app.route('/sftutorial2', methods=['POST', 'GET'])
 def sftutorial2():
