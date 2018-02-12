@@ -10,7 +10,7 @@
                         <div class="card-header p-1" id="headingOne">
                             <h3 class="mb-0 text-center" style="color:blue"> 
                                 <button style="font-size:18pt" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Defining "Significant Figures" 
+                                    Define "Significant Figures" 
                                 </button>
                             </h3>
                         </div>
@@ -36,14 +36,14 @@
                         <div class="card-header p-1" id="headingTwo">
                         <h3 class="mb-0 text-center" style="color:blue">
                             <button style="font-size:18pt; color:green" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Wait, what?
+                                Definition, second step
                             </button>
                         </h3>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
                             <figure class="figure">
-                                <img src="{{url_for('static', filename='RulerExamples.png')}}" class="figure-img img-fluid" style="width:70%; height:70%">
+                                <img src="{{url_for('static', filename='Example2.png')}}" class="figure-img img-fluid">
                             </figure>
                         </div>
                         </div>
@@ -73,18 +73,38 @@
                             <td>4.76 cm</td>
                             <td>4.78 cm</td>
                         </tr>
-                        <tr>
-                        <th scope="row">Ruler #3</th>
-                            <td>value</td>
-                            <td>value</td>
-                            <td>value</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">Scale</th>
-                            <td>value</td>
-                            <td>value</td>
-                            <td>value</td>
-                        </tr>
+                        {% if displayText == 1 %}
+                            <tr>
+                            <th scope="row">Ruler #3</th>
+                                <td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Cylinder</th>
+                                <td></td><td></td><td></td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Scale</th>
+                                <td></td><td></td><td></td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                            <th scope="row">Ruler #3</th>
+                                <td>220 mm</td>
+                                <td>230 mm</td>
+                                <td>230 mm</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Cylinder</th>
+                                <td>1700 mL</td>
+                                <td>1800 mL</td>
+                                <td>1700 mL</td>
+                            </tr>
+                            <th scope="row">Scale</th>
+                                <td>0.031 g</td>
+                                <td>0.033 g</td>
+                                <td>0.030 g</td>
+                            </tr>
+                        {% endif %}
                     </tbody>
                 </table>
             </div>
@@ -96,13 +116,13 @@
                 <form action="/sftutorial1" method="post">
                     <ul style="font-size:18pt">
                         {% if displayText == 1 %}
-                            <li>Watch the "Defining Significant Figures" clip, then click "More".</li>
+                            <li>Watch the "Define Significant Figures" clip, and then click "More".</li>
                         {% endif %}
                         {% if displayText >= 2 %}
                             <li><u style="color:blue">Significant Figures</u> - The number of "certain" digits in a measurement PLUS the one "guess" digit.</li>
                         {% endif %}
                         {% if displayText >= 3 %}
-                            <li>Sig Figs - [Not every digit is significant]</li>
+                            <li><u style="color:purple">Be careful!</u> Not every digit is significant.</li>
                         {% endif %}
                         {% if displayText < 3 %}
                             <input class="btn-sm btn-success" type="submit" value="More...">
