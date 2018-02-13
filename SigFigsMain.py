@@ -197,5 +197,21 @@ def sftutorial4():
 def sftutorial5():
     return render_template('sftutorial5.html',title="Sig Fig Tutorial", page = 5)
 
+@app.route('/roundingtutorial1', methods=['POST', 'GET'])
+def roundingtutorial1():
+    return render_template('roundingtutorial1.html',title="Rounding Tutorial", page = 1)
+
+@app.route('/roundingtutorial2', methods=['POST', 'GET'])
+def roundingtutorial2():
+    return render_template('roundingtutorial2.html',title="Rounding Tutorial", page = 2)
+
+@app.route('/roundingtutorial3', methods=['POST', 'GET'])
+def roundingtutorial3():
+    return render_template('roundingtutorial3.html',title="Rounding Tutorial", page = 3)
+
+@app.route('/roundingtutorial4', methods=['POST', 'GET'])
+def roundingtutorial4():
+    return render_template('roundingtutorial4.html',title="Rounding Tutorial", page = 4)
+
 if __name__ == '__main__':
     app.run()

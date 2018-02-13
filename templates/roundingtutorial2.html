@@ -1,0 +1,91 @@
+{% extends "roundingtutorialbase.html" %}
+
+{% block content %}
+    <h2 class = 'wrapper text-center mr-5'><u>Level 1 Examples</u>:</h2>
+    <ul>
+        <li>Intro text</li><hr>
+        <li>
+            Example #1: [PROMPT]
+            <div class="container-fluid">
+                <div class="row justify-content-center wrapper text-center">
+                    <div class="col-4 border">
+                        Rouding video tutorial.
+                    </div>
+                    <div class="col-3 border wrapper text-left">
+                        Step list: (increments with each 'Check')
+                        <ol>
+                            <li>First...</li>
+                            <li>Second...</li>
+                            <li>Third...</li>
+                            <li>Fourth...</li>
+                        </ol>
+                    </div>
+                    <div class="col-3 border">
+                        Interactive box (form)
+                        <form action="/roundingtutoial2" method="post">
+                            <div class="form-group">
+                                <input class="form-control" name = "findSigFigs" id="findSigFigs">
+                            {% for category,message in messages %}
+                                <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                            {% endfor %}
+                            </div>
+                            <input class="btn btn-success btn-sm" type="submit" value="Check...">
+                        </form>
+                    </div>
+                </div> 
+            </div>
+            </br>
+            <div class="container wrapper text-center">
+                <table class="table table-bordered text-center" style="font-size:1.5vw">
+                    <thead>
+                        <tr>
+                        <th scope="col">Original Value</th>
+                        <th scope="col">5 sig figs</th>
+                        <th scope="col">4 sig figs</th>
+                        <th scope="col">3 sig figs</th>
+                        <th scope="col">2 sig figs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">12.394681 g</th>
+                            <td>----- g</td>
+                            <td>---- g</td>
+                            <td>--- g</td>
+                            <td>-- g</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </li><hr>
+        <li>
+            Example #2: [PROMPT] + "Try" button
+            <div class="container-fluid wrapper text-center">
+                <form action="/roundingtutoial2" method="post" class = "form-inline">
+                    <table class="table table-bordered text-center" style="font-size:1.5vw">
+                        <thead>
+                            <tr>
+                            <th scope="col">Original Value</th>
+                            <th scope="col">3 sig figs</th>
+                            <th scope="col">2 sig figs</th>
+                            <th scope="col">1 sig fig</th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <div class="form-group">
+                                    <th scope="row">0.0079781 g</th>
+                                        <td><input class="form-control" name = "3SigFigs" id="3SigFigs" style="width:125px; font-size:16pt"> g</td>
+                                        <td><input class="form-control" name = "2SigFigs" id="2SigFigs" style="width:125px; font-size:16pt"> g</td>
+                                        <td><input class="form-control" name = "1SigFig" id="1SigFig" style="width:125px; font-size:16pt"> g</td>
+                                        <td><input class="btn btn-success" type="submit" value="Check..."></td>
+                                </div>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </li>
+    </ul>
+{% endblock %}
