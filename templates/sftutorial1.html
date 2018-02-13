@@ -15,7 +15,7 @@
                             </h3>
                         </div>
                         {% if displayText == 1 %}
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                 <div class="card-body">
                                     <div class="embed-responsive embed-responsive-16by9">
                                         <video controls src="{{url_for('static', filename='DefOfSigFigs.mov')}}"></video>
@@ -26,28 +26,40 @@
                             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                 <div class="card-body">
                                     <figure class="figure">
-                                        <img src="{{url_for('static', filename='RulerExample.png')}}" class="figure-img img-fluid">
+                                        <img src="{{url_for('static', filename='RulerExamples.png')}}" class="figure-img img-fluid">
                                     </figure>
                                 </div>
                             </div>
                         {% endif %}
                     </div>
-                    <div class="card">
-                        <div class="card-header p-1" id="headingTwo">
-                        <h3 class="mb-0 text-center" style="color:blue">
-                            <button style="font-size:18pt; color:green" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Definition, second step
-                            </button>
-                        </h3>
+                    {% if displayText >= 2 %}
+                        <div class="card">
+                            <div class="card-header p-1" id="headingTwo">
+                                <h3 class="mb-0 text-center" style="color:blue">
+                                    <button style="font-size:18pt; color:green" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Definition, second step
+                                    </button>
+                                </h3>
+                            </div>
+                            {% if displayText == 2 %}
+                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <video controls src="{{url_for('static', filename='Intro2ZeroRules.mov')}}"></video>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <figure class="figure">
+                                            <img src="{{url_for('static', filename='2ndExample.png')}}" class="figure-img img-fluid">
+                                        </figure>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body">
-                            <figure class="figure">
-                                <img src="{{url_for('static', filename='Example2.png')}}" class="figure-img img-fluid">
-                            </figure>
-                        </div>
-                        </div>
-                    </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="align-self-start col-6">
@@ -127,6 +139,10 @@
                         {% if displayText < 3 %}
                             <input class="btn-sm btn-success" type="submit" value="More...">
                             <input name="displayText" type="hidden" value="{{displayText}}">
+                        {% else %}
+                            <li>Review the examples above, then select 'Next' or 'Replay'.</li>
+                            <input class="btn-sm btn-danger" type="submit" value="Replay">
+                            <input name="displayText" type="hidden" value="0">
                         {% endif %}
                     </ul>
                 </form>
