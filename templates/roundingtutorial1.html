@@ -5,10 +5,14 @@
     <div class="container-fluid">
         <div class="row justify-content-center wrapper text-center">
             <div class="col-3 border">
-                "No Fractions" image and text.
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='NoFractions.png')}}" class="figure-img img-fluid" style="width:50%; height:50%">
+                </figure>
             </div>
             <div class="col-3 border">
-                "No Repeat Bars" image and text.
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='NoRepeatBars.png')}}" class="figure-img img-fluid" style="width:60%; height:60%">
+                </figure>
             </div>
             <div class="col-3 border">
                 All measurements and calculated results MUST be expressed in decimal form.
@@ -22,7 +26,9 @@
                 1/2 cm = 0.5 cm?  NOPE! (video)
             </div>
             <div class="col-3 border">
-                3 ruler examples (image)
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='ThereIsADifference.png')}}" class="figure-img img-fluid">
+                </figure>
             </div>
             <div class="col-3 border">
                 There IS a difference...
