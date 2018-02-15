@@ -203,7 +203,13 @@ def roundingtutorial1():
 
 @app.route('/roundingtutorial2', methods=['POST', 'GET'])
 def roundingtutorial2():
-    return render_template('roundingtutorial2.html',title="Rounding Tutorial", page = 2)
+    if request.method == 'POST':
+        displayText = int(request.form['displayText'])
+        displayText += 1
+    else:
+        displayText=1
+
+    return render_template('roundingtutorial2.html',title="Rounding Tutorial", page = 2, displayText=displayText)
 
 @app.route('/roundingtutorial3', methods=['POST', 'GET'])
 def roundingtutorial3():
