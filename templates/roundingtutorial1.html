@@ -4,7 +4,7 @@
     <div class="container-fluid card border-0">
         <div class="wrapper text-center card-header" id="headingOne">
             <button class="btn btn-light btn-block collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <h2 style="color:black"><u>Ground Rules (Click to reveal)</u>:</h2>
+                <h2 style="color:brown"><u>Ground Rules (Click to reveal)</u>:</h2>
             </button>
         </div>
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div> 
-    </div></br>
+    </div><br/>
 
     <div class="container-fluid card border-0">
         <div class="wrapper text-center card-header" id="headingTwo">
@@ -35,28 +35,38 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
             <div class="card-body row justify-content-center wrapper text-center">
                 <div class="col-3 border">
-                    1/2 cm = 0.5 cm?  NOPE! (video)
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <video controls src="{{url_for('static', filename='WhyNoFractions.mov')}}"></video>
+                    </div>
                 </div>
                 <div class="col-3 border">
+                    <p style="font-size:2vw">There IS a difference...</p>
                     <figure class="figure">
                         <img src="{{url_for('static', filename='ThereIsADifference.png')}}" class="figure-img img-fluid">
                     </figure>
                 </div>
-                <div class="col-3 border">
-                        <p style="font-size:2vw">There IS a difference...</p>
+                <div class="col-4 border">
+                    <p style="font-size:2vw; color:blue;">Fractions do not provide information about the tool used or about which digit is the "guess".</p>
+                    <p style="font-size:2vw; color:brown;">NO FRACTIONS!!!!!  (They do not show sig figs).</p>
                 </div>
-            </div></br>
+            </div><br/>
             <div class="row justify-content-center wrapper text-center">
                 <div class="col-3 border">
-                    No repeat bars video
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <video controls src="{{url_for('static', filename='NoRepeatBars.mov')}}"></video>
+                    </div>
                 </div>
                 <div class="col-3 border">
-                    Error/variance examples (image)
+                    <p style="font-size:2vw"><u>You get ONE guess digit</u></p>
+                    <figure class="figure">
+                        <img src="{{url_for('static', filename='NoRepeatBarsImage.png')}}" class="figure-img img-fluid">
+                    </figure>
                 </div>
-                <div class="col-3 border">
-                        <p style="font-size:2vw">Big Ideas text</p>
+                <div class="col-4 border">
+                    <p style="font-size:2vw; color:blue;">Repeat bars ignore errors in the data.  They imply 'perfect' numbers, which is impossible with measured values.</p>
+                    <p style="font-size:2vw; color:brown;">NO REPEAT BARS!!!!!  (We cannot predict past the guess digit).</p>
                 </div>
-            </div> 
+            </div>
         </div>
-    </div>
+    </div><br/><br/>
 {% endblock %}
