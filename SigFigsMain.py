@@ -206,10 +206,16 @@ def roundingtutorial2():
     if request.method == 'POST':
         displayText = int(request.form['displayText'])
         displayText += 1
+        roundedAnswer = request.form['5SigFigs']
+        print(displayText,roundedAnswer)
+        if displayText == 4 and roundedAnswer != '12.386':
+            flash('Not quite correct.  Try again.', 'error')
+            displayText = 3
     else:
         displayText=1
+        roundedAnswer = ''
 
-    return render_template('roundingtutorial2.html',title="Rounding Tutorial", page = 2, displayText=displayText)
+    return render_template('roundingtutorial2.html',title="Rounding Tutorial", page = 2, displayText=displayText, roundedAnswer = roundedAnswer)
 
 @app.route('/roundingtutorial3', methods=['POST', 'GET'])
 def roundingtutorial3():

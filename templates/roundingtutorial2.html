@@ -5,7 +5,11 @@
     <ul style="font-size:1.75vw" class="ml-2">
         <li>Intro text</li><hr>
         <li>
-            <span style="color:green"><u>Example #1</u>: </span>Follow the steps to round 12.38649 g to 5 sig figs.
+            {% if displayText < 4 %}
+                <span style="color:green"><u>Example #1</u>: </span>Follow the steps to round 12.38649 g to 5 sig figs.
+            {% else %}
+            <span style="color:green"><u>Example #1</u>: </span>Good, now consider further rounding.  Click 'Check' to confirm your thinking.
+            {% endif %}
             {% if displayText < 4 %}
                 <div class="container-fluid">
                     <div class="row justify-content-center wrapper text-center">
@@ -27,6 +31,7 @@
                             </ol>
                         </div>
                         <div class="col-3 border" style="color:purple">
+                            {% with messages = get_flashed_messages(with_categories=True) %} 
                             <form action="/roundingtutorial2" method="post">
                                 {% if displayText == 1 %}
                                     <div>
@@ -39,19 +44,24 @@
                                 {% elif displayText == 3 %}
                                     <div>
                                         <span style="color:blue">12.386</span><u style="color:red">4</u>9
-                                        <input class="form-control" name = "5SigFigs" id="5SigFigs">
+                                        <input class="form-control" name = "5SigFigs" id="5SigFigs" value={{roundedAnswer}}>
+                                        {% for category,message in messages %}
+                                            <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                                        {% endfor %}
                                     </div>
                                 {% endif %}
                                 <div>
                                     {% if displayText < 3 %}
                                         <input class="btn btn-success btn-sm mb-2" type="submit" value="Next...">
                                         <input name="displayText" type="hidden" value="{{displayText}}">
+                                        <input name="5SigFigs" type="hidden" value="{{roundedAnswer}}">
                                     {% elif displayText==3 %}
                                         <input class="btn-sm btn-danger" type="submit" value="Check">
                                         <input name="displayText" type="hidden" value="{{displayText}}">
                                     {% endif %}
                                 </div>
                             </form>
+                            {% endwith %}
                         </div>
                     </div> 
                 </div>
@@ -69,22 +79,43 @@
                             <th scope="col">2 sig figs</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                            <th scope="row">12.38649 g</th>
-                                <td>12.386 g</td>
-                                <td>---- g</td>
-                                <td>--- g</td>
-                                <td>-- g</td>
-                            </tr>
-                        </tbody>
+                        {% if displayText==4 %}
+                            <tbody>
+                                <tr>
+                                <th scope="row">12.38649 g</th>
+                                    <td style="color:blue">12.386 g</td>
+                                    <td>---- g</td>
+                                    <td>--- g</td>
+                                    <td>-- g</td>
+                                </tr>
+                            </tbody>
+                        {% else %}
+                            <tbody>
+                                <tr>
+                                <th scope="row">12.38649 g</th>
+                                    <td style="color:blue">12.386 g</td>
+                                    <td style="color:green">12.39 g</td>
+                                    <td style="color:purple">12.4 g</td>
+                                    <td style="color:red">12 g</td>
+                                </tr>
+                            </tbody>
+                        {% endif %}
                     </table>
+                </div>
+                <div class="wrapper text-center">
+                    <form action="/roundingtutorial2" method="post">
+                        {% if displayText == 4 %}
+                            <input class="btn btn-success btn-sm mb-2" type="submit" value="Check">
+                            <input name="displayText" type="hidden" value="{{displayText}}">
+                            <input name="5SigFigs" type="hidden" value="">
+                        {% endif %}
+                    </form>
                 </div>
             {% endif %}
         </li><hr>
-        <li>
-            Example #2: [PROMPT] + "Try" button
-            {% if displayText >= 5 %}
+        {% if displayText >= 5 %}
+            <li>
+                Example #2: [PROMPT] + "Try" button
                 <div class="container-fluid wrapper text-center">
                     <form action="/roundingtutorial2" method="post" class = "form-inline">
                         <table class="table table-bordered text-center" style="font-size:1.5vw">
@@ -111,7 +142,7 @@
                         </table>
                     </form>
                 </div>
-            {% endif %}
-        </li>
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}
