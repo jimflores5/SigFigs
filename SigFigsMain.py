@@ -207,15 +207,27 @@ def roundingtutorial2():
         displayText = int(request.form['displayText'])
         displayText += 1
         roundedAnswer = request.form['5SigFigs']
-        print(displayText,roundedAnswer)
+        answers = []
+        numCorrect = 0
         if displayText == 4 and roundedAnswer != '12.386':
             flash('Not quite correct.  Try again.', 'error')
             displayText = 3
+        elif displayText>5:
+            correctAnswers = ['0.00798','0.0080','0.008']
+            for x in range(3):
+                answers.append(request.form[str(3-x)+'SigFigs'])
+                if CheckAnswer(correctAnswers[x],answers[x]):
+                    flash('Correct!  :-)', 'correct')
+                    numCorrect += 1
+                else:
+                    flash('Try again.', 'error')
     else:
         displayText=1
         roundedAnswer = ''
+        answers = []
+        numCorrect = 0
 
-    return render_template('roundingtutorial2.html',title="Rounding Tutorial", page = 2, displayText=displayText, roundedAnswer = roundedAnswer)
+    return render_template('roundingtutorial2.html',title="Rounding Tutorial", page = 2, displayText=displayText, roundedAnswer = roundedAnswer, answers = answers, numCorrect=numCorrect)
 
 @app.route('/roundingtutorial3', methods=['POST', 'GET'])
 def roundingtutorial3():
