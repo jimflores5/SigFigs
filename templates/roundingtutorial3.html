@@ -1,9 +1,9 @@
 {% extends "roundingtutorialbase.html" %}
 
 {% block content %}
-    <h2 class = 'wrapper text-center mr-5'><u>Level 2 Examples</u>:</h2>
-    <ul>
-        <li>Intro text</li><hr>
+    <h2 class = 'wrapper text-left ml-2' style="color:brown"><u>Level 2 Examples</u>:</h2>
+    <ul style="font-size:1.75vw" class="ml-2">
+        <li>Since zeros may or may not be significant, we need to know how to deal with them after rounding.</li><hr>
         <li>
             Example #3: [PROMPT]
             <div class="container-fluid">
@@ -11,23 +11,22 @@
                     <div class="col-4 border">
                         Rouding video tutorial.
                     </div>
-                    <div class="col-3 border wrapper text-left">
-                        Step list: (increments with each 'Check')
+                    <div class="col-4 border wrapper text-left">
+                        <u style="color:green">Steps:</u>
                         <ol>
-                            <li>First...</li>
-                            <li>Second...</li>
-                            <li>Third...</li>
-                            <li>Fourth...</li>
+                            <li style="color:blue">Identify the first 3 sig figs in the value.</li>
+                            <li style="color:red">Look at the next digit in the number to determine if we round up or down.</li>
+                            <li>Round and decide how many zeros must be added. (Enter your answer in the box.)</li>
                         </ol>
                     </div>
                     <div class="col-3 border">
-                        Interactive box (form)
+                        2376.14 mL
                         <form action="/roundingtutoial2" method="post">
-                            <div class="form-group">
-                                <input class="form-control" name = "findSigFigs" id="findSigFigs">
-                            {% for category,message in messages %}
-                                <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
-                            {% endfor %}
+                            <div class="form-inline form-group">
+                                <input class="form-control ml-5" name = "5SigFigs" id="5SigFigs" value="{{roundedAnswer}}"> mL
+                                {% for category,message in messages %}
+                                    <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                                {% endfor %}
                             </div>
                             <input class="btn btn-success btn-sm" type="submit" value="Check...">
                         </form>

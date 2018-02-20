@@ -8,13 +8,13 @@
             {% if displayText < 4 %}
                 <span style="color:green"><u>Example #1</u> - </span>Follow the steps to round 12.38649 g to 5 sig figs.
             {% else %}
-            <span style="color:green"><u>Example #1</u> - </span>Good, now consider further rounding.  Click 'Check' to confirm your thinking.
+                <span style="color:green"><u>Example #1</u> - Good, now consider further rounding.  Click 'Check' to confirm your thinking.</span>
             {% endif %}
             {% if displayText < 4 %}
                 <div class="container-fluid">
                     <div class="row justify-content-center wrapper text-center">
-                        <div class="col-4 border">
-                            Rouding video tutorial.
+                        <div class="col-4 border embed-responsive embed-responsive-4by3">
+                            <video controls src="{{url_for('static', filename='Level1Rounding.mov')}}"></video>
                         </div>
                         <div class="col-4 border wrapper text-left" style="color:green">
                             <u>Steps:</u>
@@ -26,7 +26,7 @@
                                     <li style="color:red">Look at the next digit in the number, and decide if it causes the "6" to round up or stay the same.</li>
                                 {% endif %}
                                 {% if displayText >= 3 %}
-                                    <li>Round (if needed) and cut off the extra digits. (Enter the rounded value in the box.)</li>
+                                    <li>Round the value and cut off the extra digits. (Enter your answer in the box.)</li>
                                 {% endif %}
                             </ol>
                         </div>
@@ -35,16 +35,16 @@
                             <form action="/roundingtutorial2" method="post">
                                 {% if displayText == 1 %}
                                     <div>
-                                        12.38649
+                                        12.38649 g
                                     </div>
                                 {% elif displayText == 2 %}
                                     <div>
-                                        <span style="color:blue">12.386</span><u style="color:red">4</u>9
+                                        <span style="color:blue">12.386</span><u style="color:red">4</u>9 g
                                     </div>
                                 {% elif displayText == 3 %}
-                                    <div>
-                                        <span style="color:blue">12.386</span><u style="color:red">4</u>9
-                                        <input class="form-control" name = "5SigFigs" id="5SigFigs" value={{roundedAnswer}}>
+                                    <span style="color:blue">12.386</span><u style="color:red">4</u>9 g
+                                    <div class="form-inline form-group">
+                                        <input class="form-control ml-5" name = "5SigFigs" id="5SigFigs" value="{{roundedAnswer}}"> g
                                         {% for category,message in messages %}
                                             <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
                                         {% endfor %}
