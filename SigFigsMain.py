@@ -227,11 +227,35 @@ def roundingtutorial2():
         answers = []
         numCorrect = 0
 
-    return render_template('roundingtutorial2.html',title="Rounding Tutorial", page = 2, displayText=displayText, roundedAnswer = roundedAnswer, answers = answers, numCorrect=numCorrect)
+    return render_template('roundingtutorial2.html',title="Rounding Tutorial", page = 2, displayText=displayText, roundedAnswer = roundedAnswer, answers = answers, numCorrect = numCorrect)
 
 @app.route('/roundingtutorial3', methods=['POST', 'GET'])
 def roundingtutorial3():
-    return render_template('roundingtutorial3.html',title="Rounding Tutorial", page = 3)
+    if request.method == 'POST':
+        displayText = int(request.form['displayText'])
+        displayText += 1
+        example3 = request.form['example3']
+        answers = []
+        numCorrect = 0
+        if displayText == 2 and example3 != '2380':
+            flash('Not quite correct.  Try again.', 'error')
+            displayText = 1
+        elif displayText > 3:
+            correctAnswers = ['0.0998','0.10','0.1']
+            for x in range(3):
+                answers.append(request.form[str(3-x)+'SigFigs'])
+                if CheckAnswer(correctAnswers[x],answers[x]):
+                    flash('Correct!  :-)', 'correct')
+                    numCorrect += 1
+                else:
+                    flash('Try again.', 'error')
+    else:
+        displayText=1
+        example3 = ''
+        answers = []
+        numCorrect = 0
+
+    return render_template('roundingtutorial3.html',title="Rounding Tutorial", page = 3, displayText=displayText, answers = answers, example3 = example3, numCorrect = numCorrect)
 
 @app.route('/roundingtutorial4', methods=['POST', 'GET'])
 def roundingtutorial4():
