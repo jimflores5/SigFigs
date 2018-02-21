@@ -261,5 +261,17 @@ def roundingtutorial3():
 def roundingtutorial4():
     return render_template('roundingtutorial4.html',title="Rounding Tutorial", page = 4)
 
+@app.route('/scinottutorial1', methods=['POST', 'GET'])
+def scinottutorial1():
+    return render_template('scinottutorial1.html',title="Scientific Notation Tutorial", page = 1)
+
+@app.route('/scinottutorial2', methods=['POST', 'GET'])
+def scinottutorial2():
+    return render_template('scinottutorial2.html',title="Scientific Notation Tutorial", page = 2)
+
+@app.route('/scinottutorial3', methods=['POST', 'GET'])
+def scinottutorial3():
+    return render_template('scinottutorial3.html',title="Scientific Notation Tutorial", page = 3)
+
 if __name__ == '__main__':
     app.run()
