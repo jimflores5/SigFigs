@@ -1,31 +1,71 @@
 {% extends "scinottutorialbase.html" %}
 
 {% block content %}
-    <div class="container-fluid card border-0">
+    <div class="container-fluid border-0" style="font-size:2vw">
         <div class="row justify-content-center wrapper text-center">
             <div class="col-4 border">
                 [Video showing how to convert large #s into sci notation]
             </div>
             <div class="col-2 border">
-                "Try it" arrow
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='TryIt1.png')}}" class="figure-img img-fluid" style="width:90%; height:90%">
+                </figure>
             </div>
-            <div class="col-4 border">
-                Sample problems with "Submit" button.
+            <div class="col-4 border wrapper text-center">
+                <form action="/scinottutorial1" method="post">
+                    <ul type="none" class="wrapper text-left mt-3 pl-1" style="font-size: 1.75vw">
+                        <li>
+                            <label for "decimal">a) 430800 = </label>
+                            <input name="decimal" type="text" value="" size="3">
+                            <label for "exponent">x10</label>
+                            <sup style="vertical-align: 1em"><input name="exponent" type="text" value="" size="1"></sup></br>
+                        </li>
+                        <hr>
+                        <li>
+                            <label for "decimal">b) 317,000,000 = </label>
+                            <input name="decimal" type="text" value="" size="3">
+                            <label for "exponent">x10</label>
+                            <sup style="vertical-align: 1em"><input name="exponent" type="text" value="" size="1"></sup></br>
+                        </li>
+                        <hr>
+                    </ul>
+                    <input class="btn btn-success mb-3" type="submit" value="Check">
+                </form>
             </div>
         </div>
     </div>
     <hr>
-    <div class="container-fluid card border-0">
-            <div class="row justify-content-center wrapper text-center">
-                <div class="col-4 border">
-                    [Video showing how to convert small #s into sci notation]
-                </div>
-                <div class="col-2 border">
-                    "Try it" arrow
-                </div>
-                <div class="col-4 border">
-                    Sample problems with "Submit" button.
-                </div>
+    <div class="container-fluid border-0" style="font-size:2vw">
+        <div class="row justify-content-center wrapper text-center">
+            <div class="col-4 border" style="display:flex; flex-direction:column; justify-content:center">
+                [Video showing how to convert small #s into sci notation]
+            </div>
+            <div class="col-2 border">
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='TryIt1.png')}}" class="figure-img img-fluid" style="width:90%; height:90%;">
+                </figure>
+            </div>
+            <div class="col-4 border" style="display:flex; flex-direction:column; justify-content:center">
+                <form action="/scinottutorial1" method="post">
+                    <ul type="none" class="wrapper text-left mt-3 pl-1" style="font-size: 1.75vw">
+                        <li>
+                            <label for "decimal">a) 0.000503 = </label>
+                            <input name="decimal" type="text" value="" size="3">
+                            <label for "exponent">x10</label>
+                            <sup style="vertical-align: 1em"><input name="exponent" type="text" value="" size="1"></sup></br>
+                        </li>
+                        <hr>
+                        <li>
+                            <label for "decimal">b) 0.0000070 = </label>
+                            <input name="decimal" type="text" value="" size="3">
+                            <label for "exponent">x10</label>
+                            <sup style="vertical-align: 1em"><input name="exponent" type="text" value="" size="1"></sup></br>
+                        </li>
+                        <hr>
+                    </ul>
+                    <input class="btn btn-success mb-3" type="submit" value="Check">
+                </form>
             </div>
         </div>
+    </div>
 {% endblock %}
