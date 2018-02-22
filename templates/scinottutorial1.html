@@ -1,35 +1,56 @@
 {% extends "scinottutorialbase.html" %}
 
 {% block content %}
-    <ul>
-        <li>Sci not allows us to...</li>
-        <li>You have seen...</li>
+    <ul style="font-size:2vw" class="ml-2">
+        <li>Scientific notation allows us to easily represent very large or very small values.</li>
+        <li style="color:blue">You have seen scientific notation before in previous classes.</li>
+        {% if displayText == 1 %}
+            <li style="color:green"><u>Try the following example to refresh your memory</u>: (Keep 2 sig figs)</li>
+        {% else %}
+            <hr>
+            <li style="color:purple">{{decimal}}x10<sup style="vertical-align: 0.5em">{{exponent}}</sup> is CORRECT, but note that it is one of several 'right' answers:</li>
+        {% endif %}
+    </ul>
+    {% if displayText == 1 %}
+        <div class="container-fluid wrapper text-center">
+            {% with messages = get_flashed_messages(with_categories=True) %} 
+                <form action="/scinottutorial1" method="post">
+                    <label for "decimal" style="font-size: 2.5vw">1500= </label>
+                    <input name="decimal" type="text" style="font-size: 2.5vw" value="{{decimal}}" size="3">
+                    <label for "exponent" style="font-size: 2.5vw">x10</label>
+                    <sup style="vertical-align: 1em"><input name="exponent" type="text" style="font-size: 2vw" value="{{exponent}}" size="1"></sup></br>
+                    {% for category,message in messages %}
+                        <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                    {% endfor %}
+                    <br/>
+                    <input class="btn btn-success" type="submit" value="Check Answer">
+                    <input name="displayText" type="hidden" value="{{displayText}}">
+                </form>
+            {% endwith %}
+        </div>
         <hr>
-        <li>Quick review:</li>
-    </ul>
-    <div class="container">
-        <form>
-            <label>1500 = </label>
-            [Input box] x 10^[Input box]
-        </form>
-    </div>
-    <p class="wrapper text-center">Submit button</p>
-    <hr>
-    <div class="container-fluid wrapper text-center">
-        <h3>(After submit...)</h3>
-        <p>Student feedback & response</p>
-        <p>However...</p>
+    {% else %}
+        <div class="container-fluid">
+            <div class="row justify-content-between ml-5" style="font-size:2vw">
+                <div class="col-3" style="color:blue">
+                    1.5x10<sup style="vertical-align: 0.5em">3</sup>
+                </div>
+                <div class="col-3" style="color:green">
+                    15x10<sup style="vertical-align: 0.5em">2</sup>
+                </div>
+                <div class="col-3" style="color:red">
+                    150x10<sup style="vertical-align: 0.5em">1</sup>
+                </div>
+                <div class="col-3">
+                    1500x10<sup style="vertical-align: 0.5em">0</sup>
+                </div>
+            </div>
+        </div>
+        <hr>
         <ul>
-            <li>1.5x10^3</li>
-            <li>15x10^2</li>
-            <li>150x10^1</li>
-            <li>1500x10^0</li>
+            <li>Explanation...</li>
+            <li>Explanation (cont.)</li>
+            <li>Convention: </li>
         </ul>
-    </div>
-    <hr>
-    <ul>
-        <li>Explanation...</li>
-        <li>Explanation (cont.)</li>
-        <li>Convention: </li>
-    </ul>
+    {% endif %}
 {% endblock %}

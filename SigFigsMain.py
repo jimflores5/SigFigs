@@ -263,7 +263,29 @@ def roundingtutorial4():
 
 @app.route('/scinottutorial1', methods=['POST', 'GET'])
 def scinottutorial1():
-    return render_template('scinottutorial1.html',title="Scientific Notation Tutorial", page = 1)
+    if request.method == 'POST':
+        displayText = int(request.form['displayText'])
+        displayText += 1
+        decimal = request.form['decimal']
+        power = request.form['exponent']
+        decimals = ['1.5', '15', '150', '1500']
+        powers = ['3','2','1','0']
+        if decimal in decimals:
+            index = decimals.index(decimal)
+            if power == powers[index]:
+                flash('Correct!  :-)', 'correct')
+            else:
+                flash('Incorrect power.  Try again.', 'error')
+                displayText = 1
+        else:
+            flash('Incorrect decimal value.  Try again.', 'error')       
+            displayText = 1             
+    else:
+        displayText=1
+        decimal = ''
+        power = ''
+
+    return render_template('scinottutorial1.html',title="Scientific Notation Tutorial", page = 1, displayText = displayText, decimal = decimal, exponent=power)
 
 @app.route('/scinottutorial2', methods=['POST', 'GET'])
 def scinottutorial2():
