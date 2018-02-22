@@ -3,12 +3,15 @@
 {% block content %}
     <ul style="font-size:2vw" class="ml-2">
         <li>Scientific notation allows us to easily represent very large or very small values.</li>
-        <li style="color:blue">You have seen scientific notation before in previous classes.</li>
+        <li style="color:blue">You have used scientific notation in previous classes.</li>
         {% if displayText == 1 %}
             <li style="color:green"><u>Try the following example to refresh your memory</u>: (Keep 2 sig figs)</li>
+        {% elif displayText == 2 %}
+            <hr>
+            <li style="color:purple">{{decimal}} x 10<sup style="vertical-align: 0.5em">{{exponent}}</sup> is CORRECT, but it is actually one of several 'right' answers:</li>
         {% else %}
             <hr>
-            <li style="color:purple">{{decimal}}x10<sup style="vertical-align: 0.5em">{{exponent}}</sup> is CORRECT, but note that it is one of several 'right' answers:</li>
+            <li style="color:red">The expression 10<sup style="vertical-align: 0.5em">x</sup> tells us to multiply 10 by itself 'x' times.  So:</li>
         {% endif %}
     </ul>
     {% if displayText == 1 %}
@@ -33,24 +36,94 @@
         <div class="container-fluid">
             <div class="row justify-content-between ml-5" style="font-size:2vw">
                 <div class="col-3" style="color:blue">
-                    1.5x10<sup style="vertical-align: 0.5em">3</sup>
+                    1.5 x 10<sup style="vertical-align: 0.5em">3</sup>
                 </div>
                 <div class="col-3" style="color:green">
-                    15x10<sup style="vertical-align: 0.5em">2</sup>
+                    15 x 10<sup style="vertical-align: 0.5em">2</sup>
                 </div>
                 <div class="col-3" style="color:red">
-                    150x10<sup style="vertical-align: 0.5em">1</sup>
+                    150 x 10<sup style="vertical-align: 0.5em">1</sup>
                 </div>
                 <div class="col-3">
-                    1500x10<sup style="vertical-align: 0.5em">0</sup>
+                    1500 x 10<sup style="vertical-align: 0.5em">0</sup>
                 </div>
+                {% if displayText == 2 %}
+                    <div class="container">
+                        <form action="/scinottutorial1" method="post">
+                            <input class="btn btn-info btn-sm" type="submit" value="Explore why...">
+                            <input name="displayText" type="hidden" value="{{displayText}}">
+                        </form>
+                    </div>
+                {% endif %}
             </div>
+            {% if displayText > 2 %}
+                <div class="row justify-content-between ml-5" style="font-size:2vw">
+                    <div class="col-3" style="color:blue">
+                        1.5 x (10x10x10)
+                    </div>
+                    <div class="col-3" style="color:green">
+                        15 x (10x10)
+                    </div>
+                    <div class="col-3" style="color:red">
+                        150 x (10)
+                    </div>
+                    <div class="col-3">
+                        1500 x (1)
+                    </div>
+                </div>
+                <div class="row justify-content-between ml-5" style="font-size:2vw">
+                    <div class="col-3" style="color:blue">
+                        1.5 x (1000)
+                    </div>
+                    <div class="col-3" style="color:green">
+                        15 x (100)
+                    </div>
+                    <div class="col-3" style="color:red"></div>
+                    <div class="col-3"></div>
+                </div>
+                <div class="row justify-content-between ml-5" style="font-size:2vw">
+                    <div class="col-3" style="color:blue">
+                        1500
+                    </div>
+                    <div class="col-3" style="color:green">
+                        1500
+                    </div>
+                    <div class="col-3" style="color:red">
+                        1500
+                    </div>
+                    <div class="col-3">
+                        1500
+                    </div>
+                </div>
+            {% endif %}
         </div>
-        <hr>
-        <ul>
-            <li>Explanation...</li>
-            <li>Explanation (cont.)</li>
-            <li>Convention: </li>
-        </ul>
+        {% if displayText > 2 %}
+            <ul style="font-size:2vw" class="ml-2">
+                <li>Each example above correctly represents '1500' by multiplying a number and a power of 10.</li>
+                {% if displayText > 3 %}
+                    <li style="color:brown">To avoid unnessary complications, in this course we will ALL follow the same convention.</li>
+                {% endif %}
+                {% if displayText > 4 %}
+                    <hr>
+                    <li style="color:blue"><u>Convention</u> - When using scientific notation, write ONE AND ONLY ONE non-zero digit in front of the decimal.</li>
+                    <div class="row justify-content-between mt-2" style="font-size:2.5vw">
+                        <div class="container col-4">
+                            203000 = <mark class="alert-sm alert-primary">2</mark>.03 x 10<sup style="vertical-align: 0.5em">5</sup>
+                        </div>
+                        <div class="container col-4">
+                            0.0036 = <mark class="alert-sm alert-primary">3</mark>.6 x 10<sup style="vertical-align: 0.5em">-3</sup>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if displayText <= 4 %}
+                    <li>
+                        <form action="/scinottutorial1" method="post">
+                            <input class="btn btn-info btn-sm" type="submit" value="Continue">
+                            <input name="displayText" type="hidden" value="{{displayText}}">
+                        </form>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
     {% endif %}
 {% endblock %}
