@@ -291,11 +291,36 @@ def scinottutorial1():
 
 @app.route('/scinottutorial2', methods=['POST', 'GET'])
 def scinottutorial2():
-    return render_template('scinottutorial2.html',title="Scientific Notation Tutorial", page = 2)
+    values = []
+    sciValues = []
+    powers = []
+    for item in range(4):
+        sigFigs = random.randrange(1,5)
+        if item <= 1:
+            power = random.randrange(0,7)
+        else:
+            power = random.randrange(-5,0)
+        value = MakeNumber(sigFigs,power)
+        values.append(value)
+        powers.append(power)
+        sciValues.append(ApplySciNotation(value, sigFigs))
+        
+    return render_template('scinottutorial2.html',title="Scientific Notation Tutorial", page = 2, values = values, sciValues = sciValues, powers = powers)
 
 @app.route('/scinottutorial3', methods=['POST', 'GET'])
 def scinottutorial3():
-    return render_template('scinottutorial3.html',title="Scientific Notation Tutorial", page = 3)
+    sciValues = []
+    powers = []
+    for item in range(4):
+        sigFigs = random.randrange(1,5)
+        if item <= 1:
+            power = random.randrange(0,7)
+        else:
+            power = random.randrange(-5,0)
+        powers.append(power)
+        sciValues.append(ApplySciNotation(MakeNumber(sigFigs,power), sigFigs))
+
+    return render_template('scinottutorial3.html',title="Scientific Notation Tutorial", page = 3, sciValues = sciValues, powers = powers)
 
 if __name__ == '__main__':
     app.run()

@@ -12,22 +12,17 @@
                 </figure>
             </div>
             <div class="col-4 border wrapper text-center">
-                <form action="/scinottutorial1" method="post">
+                <form action="/scinottutorial2" method="post">
                     <ul type="none" class="wrapper text-left mt-3 pl-1" style="font-size: 1.75vw">
-                        <li>
-                            <label for "decimal">a) 430800 = </label>
-                            <input name="decimal" type="text" value="" size="3">
-                            <label for "exponent">x10</label>
-                            <sup style="vertical-align: 1em"><input name="exponent" type="text" value="" size="1"></sup></br>
-                        </li>
-                        <hr>
-                        <li>
-                            <label for "decimal">b) 317,000,000 = </label>
-                            <input name="decimal" type="text" value="" size="3">
-                            <label for "exponent">x10</label>
-                            <sup style="vertical-align: 1em"><input name="exponent" type="text" value="" size="1"></sup></br>
-                        </li>
-                        <hr>
+                        {% for item in range(2) %}
+                            <li>
+                                <label for "decimal">{{values[item]}} = </label>
+                                <input name="decimal" type="text" value="" size="3">
+                                <label for "exponent">x10</label>
+                                <sup style="vertical-align: 1em"><input name="exponent" type="text" value="" size="1"></sup></br>
+                            </li>
+                            <hr>
+                        {% endfor %}
                     </ul>
                     <input class="btn btn-success mb-3" type="submit" value="Check">
                 </form>
@@ -46,22 +41,17 @@
                 </figure>
             </div>
             <div class="col-4 border" style="display:flex; flex-direction:column; justify-content:center">
-                <form action="/scinottutorial1" method="post">
+                <form action="/scinottutorial2" method="post">
                     <ul type="none" class="wrapper text-left mt-3 pl-1" style="font-size: 1.75vw">
-                        <li>
-                            <label for "decimal">a) 0.000503 = </label>
-                            <input name="decimal" type="text" value="" size="3">
-                            <label for "exponent">x10</label>
-                            <sup style="vertical-align: 1em"><input name="exponent" type="text" value="" size="1"></sup></br>
-                        </li>
-                        <hr>
-                        <li>
-                            <label for "decimal">b) 0.0000070 = </label>
-                            <input name="decimal" type="text" value="" size="3">
-                            <label for "exponent">x10</label>
-                            <sup style="vertical-align: 1em"><input name="exponent" type="text" value="" size="1"></sup></br>
-                        </li>
-                        <hr>
+                        {% for item in range(2,4) %}
+                            <li>
+                                <label for "decimal">{{values[item]}} = </label>
+                                <input name="decimal" type="text" value="" size="3">
+                                <label for "exponent">x10</label>
+                                <sup style="vertical-align: 1em"><input name="exponent" type="text" value="" size="1"></sup></br>
+                            </li>
+                            <hr>
+                        {% endfor %}
                     </ul>
                     <input class="btn btn-success mb-3" type="submit" value="Check">
                 </form>

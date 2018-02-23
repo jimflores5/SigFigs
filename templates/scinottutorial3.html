@@ -11,8 +11,19 @@
                     <img src="{{url_for('static', filename='TryIt1.png')}}" class="figure-img img-fluid">
                 </figure>
             </div>
-            <div class="col-4 border">
-                Sample problems with "Submit" button.
+            <div class="col-4 border wrapper text-center">
+                <form action="/scinottutorial3" method="post">
+                    <ul type="a" class="wrapper text-left mt-3" style="font-size: 1.75vw">
+                        {% for item in range(4) %}
+                        <li>
+                            <label for "answer" style="font-size: 24pt">{{sciValues[item]}}x10<sup style="vertical-align: 0.5em">{{powers[item]}}</sup>= </label>
+                            <input name="answer" type="text" style="font-size: 24pt" value="{{answer}}" size="9"></br>
+                        </li>
+                        <hr>
+                        {% endfor %}
+                    </ul>
+                    <input class="btn btn-success mb-3" type="submit" value="Check">
+                </form>
             </div>
         </div>
     </div>
