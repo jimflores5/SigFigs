@@ -291,21 +291,48 @@ def scinottutorial1():
 
 @app.route('/scinottutorial2', methods=['POST', 'GET'])
 def scinottutorial2():
-    values = []
-    sciValues = []
-    powers = []
-    for item in range(4):
-        sigFigs = random.randrange(1,5)
-        if item <= 1:
-            power = random.randrange(0,7)
-        else:
-            power = random.randrange(-5,0)
-        value = MakeNumber(sigFigs,power)
-        values.append(value)
-        powers.append(power)
-        sciValues.append(ApplySciNotation(value, sigFigs))
+    if request.method == 'POST':
+        #displayText = int(request.form['displayText'])
+        #displayText += 1
+        decimals = []
+        powers = []
+        exponents = []
+        values = []
+        sciValues = []
+        for item in range(2):
+            decimals.append(request.form['decimal'+str(item)])
+            exponents.append(request.form['exponent'+str(item)])
+            values.append(request.form['value'+str(item)])
+            powers.append(request.form['power'+str(item)])
+            sciValues.append(request.form['sciValue'+str(item)])
+            if CheckAnswer(powers[item], exponents[item]) and CheckAnswer(sciValues[item],decimals[item]):
+                flash('Correct!  :-)', 'correct')
+            elif CheckAnswer(powers[item], exponents[item]) and not CheckAnswer(sciValues[item],decimals[item]):
+                flash('Correct power.  Wrong decimal value.', 'error')
+            elif CheckAnswer(sciValues[item],decimals[item]) and not CheckAnswer(powers[item], exponents[item]):
+                flash('Correct decimal value.  Wrong power.', 'error')
+            else:
+                flash('Both entries are incorrect.  Try again.', 'error')
+
+    else:
+        values = []
+        sciValues = []
+        powers = []
+        decimals = []
+        exponents = []
+        #displayText = 1
+        for item in range(4):
+            sigFigs = random.randrange(1,5)
+            if item <= 1:
+                power = random.randrange(0,7)
+            else:
+                power = random.randrange(-5,0)
+            value = MakeNumber(sigFigs,power)
+            values.append(value)
+            powers.append(power)
+            sciValues.append(ApplySciNotation(value, sigFigs))
         
-    return render_template('scinottutorial2.html',title="Scientific Notation Tutorial", page = 2, values = values, sciValues = sciValues, powers = powers)
+    return render_template('scinottutorial2.html',title="Scientific Notation Tutorial", page = 2, values = values, decimals = decimals, exponents = exponents, sciValues = sciValues, powers = powers)
 
 @app.route('/scinottutorial3', methods=['POST', 'GET'])
 def scinottutorial3():

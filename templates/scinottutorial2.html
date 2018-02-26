@@ -12,20 +12,27 @@
                 </figure>
             </div>
             <div class="col-4 border wrapper text-center">
-                <form action="/scinottutorial2" method="post">
-                    <ul type="none" class="wrapper text-left mt-3 pl-1" style="font-size: 1.75vw">
-                        {% for item in range(2) %}
-                            <li>
-                                <label for "decimal">{{values[item]}} = </label>
-                                <input name="decimal" type="text" value="" size="3">
-                                <label for "exponent">x10</label>
-                                <sup style="vertical-align: 1em"><input name="exponent" type="text" value="" size="1"></sup></br>
-                            </li>
-                            <hr>
-                        {% endfor %}
-                    </ul>
-                    <input class="btn btn-success mb-3" type="submit" value="Check">
-                </form>
+                {% with messages = get_flashed_messages(with_categories=True) %} 
+                    <form action="/scinottutorial2" method="post">
+                        <ul type="none" class="wrapper text-left mt-3 pl-1" style="font-size: 1.75vw">
+                            {% for item in range(2) %}
+                                <li>
+                                    <label for "decimal{{item}}">{{values[item]}} = </label>
+                                    <input name="decimal{{item}}" type="text" value="{{decimals[item]}}" size="3">
+                                    <label for "exponent{{item}}">x10</label>
+                                    <sup style="vertical-align: 1em"><input name="exponent{{item}}" type="text" value="{{exponents[item]}}" size="1"></sup></br>
+                                </li>
+                                {% set message = messages[item] %}
+                                <span class='{{message[0]}}' style="font-size: 14pt">{{message[1]}}</span>
+                                <hr>
+                                <input name="value{{item}}" type="hidden" value="{{values[item]}}">
+                                <input name="power{{item}}" type="hidden" value="{{powers[item]}}">
+                                <input name="sciValue{{item}}" type="hidden" value="{{sciValues[item]}}">
+                            {% endfor %}
+                        </ul>
+                        <input class="btn btn-success mb-3" type="submit" value="Check">
+                    </form>
+                {% endwith %}
             </div>
         </div>
     </div>
