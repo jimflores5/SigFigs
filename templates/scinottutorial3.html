@@ -1,10 +1,13 @@
 {% extends "scinottutorialbase.html" %}
 
 {% block content %}
-    <div class="container-fluid card border-0">
+    <div class="container-fluid border-0" style="font-size:2vw">
         <div class="row justify-content-center wrapper text-center">
             <div class="col-4 border">
-                [Video showing how to convert sci notation into standard notation]
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='TempImage.png')}}" class="figure-img img-fluid rounded">
+                    <figcaption class="figure-caption">Video showing how to convert sci notation into standard notation.</figcaption>
+                </figure>
             </div>
             <div class="col-2 border">
                 <figure class="figure">
@@ -12,25 +15,33 @@
                 </figure>
             </div>
             <div class="col-4 border wrapper text-center">
-                <form action="/scinottutorial3" method="post">
-                    <ul type="a" class="wrapper text-left mt-3" style="font-size: 1.75vw">
-                        {% for item in range(4) %}
-                        <li>
-                            <label for "answer" style="font-size: 24pt">{{sciValues[item]}}x10<sup style="vertical-align: 0.5em">{{powers[item]}}</sup>= </label>
-                            <input name="answer" type="text" style="font-size: 24pt" value="{{answer}}" size="9"></br>
-                        </li>
-                        <hr>
-                        {% endfor %}
-                    </ul>
-                    <input class="btn btn-success mb-3" type="submit" value="Check">
-                </form>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    <form action="/scinottutorial3" method="post">
+                        <ul type="a" class="wrapper text-left mt-3" style="font-size: 1.75vw">
+                            {% for item in range(4) %}
+                            <li>
+                                <label for "answer{{item}}">{{sciValues[item]}}x10<sup style="vertical-align: 0.5em">{{powers[item]}}</sup>= </label>
+                                <input name="answer{{item}}" type="text" value="{{answers[item]}}" size="9"></br>
+                            </li>
+                            {% if messages %}
+                                {% set message = messages[item] %}
+                                <span class='{{message[0]}}'>{{message[1]}}</span>
+                            {% endif %}
+                            <hr>
+                            <input name="value{{item}}" type="hidden" value="{{values[item]}}">
+                            <input name="power{{item}}" type="hidden" value="{{powers[item]}}">
+                            <input name="sciValue{{item}}" type="hidden" value="{{sciValues[item]}}">
+                            {% endfor %}
+                        </ul>
+                        {% if numCorrect != 4 %}
+                            <input class="btn btn-success mb-3" type="submit" value="Check">
+                        {% else %}
+                            <a class="btn btn-primary mr-2" href="/" role="button">Main Menu</a>
+                            <a class="btn btn-success mr-2" href="/scinotation" role="button">More Practice</a>
+                        {% endif %}
+                    </form>
+                {% endwith %}
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="container-fluid wrapper text-center">
-        <h3>(After submit...)</h3>
-        <p>Time for more practice!</p>
-        Button linking to sci notation practice page.
     </div>
 {% endblock %}
