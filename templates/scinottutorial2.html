@@ -4,14 +4,13 @@
     <div class="container-fluid border-0" style="font-size:2vw">
         <div class="row justify-content-center wrapper text-center">
             <div class="col-4 border">
-                <figure class="figure">
-                    <img src="{{url_for('static', filename='TempImage.png')}}" class="figure-img img-fluid rounded">
-                    <figcaption class="figure-caption">Video showing how to convert large #s into sci notation.</figcaption>
-                </figure>
+                <div class="border embed-responsive embed-responsive-16by9">
+                    <video controls src="{{url_for('static', filename='SciNot1.mov')}}"></video>
+                </div>
                 <hr>
                 <figure class="figure">
                     <img src="{{url_for('static', filename='TempImage.png')}}" class="figure-img img-fluid rounded">
-                    <figcaption class="figure-caption">Video showing how to convert small #s into sci notation.</figcaption>
+                    <figcaption class="figure-caption">Video showing how to convert small #'s into sci notation.</figcaption>
                 </figure>
             </div>
             <div class="col-2 border">

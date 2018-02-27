@@ -370,5 +370,17 @@ def scinottutorial3():
 
     return render_template('scinottutorial3.html',title="Scientific Notation Tutorial", page = 3, values = values, answers = answers, sciValues = sciValues, powers = powers, numCorrect = numCorrect)
 
+@app.route('/sfcalcstutorial1', methods=['POST', 'GET'])
+def sfcalcstutorial1():
+    return render_template('sfcalcstutorial1.html',title="Calculations with Sig Figs Tutorial", page = 1)
+
+@app.route('/sfcalcstutorial2', methods=['POST', 'GET'])
+def sfcalcstutorial2():
+    return render_template('sfcalcstutorial2.html',title="Calculations with Sig Figs Tutorial", page = 2)
+
+@app.route('/sfcalcstutorial3', methods=['POST', 'GET'])
+def sfcalcstutorial3():
+    return render_template('sfcalcstutorial3.html',title="Calculations with Sig Figs Tutorial", page = 3)
+
 if __name__ == '__main__':
     app.run()
