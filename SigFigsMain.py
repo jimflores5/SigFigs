@@ -57,7 +57,6 @@ def roundingsf():
 
 @app.route('/sfcalcs', methods=['POST', 'GET'])
 def sfcalcs():
-    #TODO - Deal with placeholding zeros needing to be significant.  Add scientific notation option?
     if request.method == 'POST':
         answer = request.form['answer']
         result = request.form['result']
@@ -74,12 +73,24 @@ def sfcalcs():
     operators = ['+', '-', 'x', '/']
     operation = random.randrange(4) #Randomly select +, -, * or / using integers 0 - 3, respectively.
     if operation < 2:      #For + and -, create 2 values between 0.001 and 90 with 1 - 6 sig figs.
-        sigFigs1 = random.randrange(1,7)
-        power1 = random.randrange(-3,2)
-        value1 = MakeNumber(sigFigs1,power1)
-        sigFigs2 = random.randrange(1,7)
-        power2 = random.randrange(-3,2)
-        value2 = MakeNumber(sigFigs2,power2)
+        iffyValue = True
+        while iffyValue:
+            sigFigs = random.randrange(1,7)
+            power = random.randrange(-3,2)
+            value = MakeNumber(sigFigs,power)
+            iffyValue = CheckRounding(value,sigFigs)
+        sigFigs1 = sigFigs
+        power1 = power
+        value1 = value
+        iffyValue = True
+        while iffyValue:
+            sigFigs = random.randrange(1,7)
+            power = random.randrange(-3,2)
+            value = MakeNumber(sigFigs,power)
+            iffyValue = CheckRounding(value,sigFigs)
+        sigFigs2 = sigFigs
+        power2 = power
+        value2 = value
     else:                   #For * and /, create 2 values between 0.01 and 900 with 1 - 6 sig figs.
         sigFigs1 = random.randrange(1,7)
         power1 = random.randrange(-2,3)
@@ -376,11 +387,100 @@ def sfcalcstutorial1():
 
 @app.route('/sfcalcstutorial2', methods=['POST', 'GET'])
 def sfcalcstutorial2():
-    return render_template('sfcalcstutorial2.html',title="Calculations with Sig Figs Tutorial", page = 2)
+    if request.method == 'POST':
+        answers = []
+        results = []
+        values = []
+        numCorrect = 0
+        for item in range(4):
+            values.append(request.form['value'+str(item)])
+            if item < 2:
+                answers.append(request.form['answer'+str(item)])
+                results.append(request.form['result'+str(item)])
+                if CheckAnswer(results[item], answers[item]):
+                    flash('Correct!  :-)', 'correct')
+                    numCorrect += 1
+                else:
+                    flash('Try again.', 'error')
+
+        return render_template('sfcalcstutorial2.html',title="Calculations with Sig Figs Tutorial", page = 2, values = values, answers = answers, results = results, numCorrect = numCorrect)
+
+    else:
+        numCorrect = 0
+        answers = []
+        sigFigs = []
+        powers = []
+        values = []
+        results = []
+        for index in range(4):
+            sigFigs.append(random.randrange(1,7))
+            powers.append(random.randrange(-2,3))
+            values.append(MakeNumber(sigFigs[index],powers[index]))
+            flip = False
+            if index == 1:
+                results.append(multiplyValues(values[index-1],sigFigs[index-1],values[index],sigFigs[index]))
+            elif index == 3 and float(values[index-1])/float(values[index])<1e-4:
+                temp = values[index-1]
+                values[index-1]=values[index]
+                values[index]=temp
+                results.append(divideValues(values[index-1],sigFigs[index-1],values[index],sigFigs[index]))
+            elif index == 3:
+                results.append(divideValues(values[index-1],sigFigs[index-1],values[index],sigFigs[index]))
+            
+    return render_template('sfcalcstutorial2.html',title="Calculations with Sig Figs Tutorial", page = 2, values = values, sigFigs = sigFigs, powers = powers, answers = answers, flip = flip, results = results, numCorrect = numCorrect)
 
 @app.route('/sfcalcstutorial3', methods=['POST', 'GET'])
 def sfcalcstutorial3():
-    return render_template('sfcalcstutorial3.html',title="Calculations with Sig Figs Tutorial", page = 3)
+    if request.method == 'POST':
+        answers = []
+        results = []
+        values = []
+        numCorrect = 0
+        for item in range(4):
+            values.append(request.form['value'+str(item)])
+            if item < 2:
+                answers.append(request.form['answer'+str(item)])
+                results.append(request.form['result'+str(item)])
+                if CheckAnswer(results[item], answers[item]):
+                    flash('Correct!  :-)', 'correct')
+                    numCorrect += 1
+                else:
+                    flash('Try again.', 'error')
+
+        return render_template('sfcalcstutorial3.html',title="Calculations with Sig Figs Tutorial", page = 3, values = values, answers = answers, results = results, numCorrect = numCorrect)
+
+    else:
+        numCorrect = 0
+        answers = []
+        sigFigs = []
+        powers = []
+        values = []
+        results = []
+        for index in range(4):
+            iffyValue = True
+            while iffyValue:
+                sigFig = random.randrange(1,3)
+                power = random.randrange(-3,3)
+                value = MakeNumber(sigFig,power)
+                iffyValue = CheckRounding(value,sigFig)
+            sigFigs.append(sigFig)
+            powers.append(power)
+            values.append(value)
+            if index == 1:
+                results.append(addValues(values[index-1],values[index]))
+            elif index == 3 and values[index-1] < values[index]:
+                temp = values[index-1]
+                values[index-1]=values[index]
+                values[index]=temp
+                results.append(subtractValues(values[index-1],values[index]))
+            elif index == 3:
+                results.append(subtractValues(values[index-1],values[index]))
+            
+    return render_template('sfcalcstutorial3.html',title="Calculations with Sig Figs Tutorial", page = 3, values = values, sigFigs = sigFigs, powers = powers, answers = answers, results = results, numCorrect = numCorrect)
+
+@app.route('/sfcalcstutorial4', methods=['POST', 'GET'])
+def sfcalcstutorial4():            
+    return render_template('sfcalcstutorial4.html',title="Calculations with Sig Figs Tutorial", page = 4)
 
 if __name__ == '__main__':
     app.run()

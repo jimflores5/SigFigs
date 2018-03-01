@@ -1,53 +1,51 @@
 {% extends "sfcalcstutorialbase.html" %}
 
 {% block content %}
-    <h2 class = 'wrapper text-left ml-2'><u>"Certain" numbers</u>:</h2>
+    <h2 class = 'wrapper text-left ml-2'><u>Intro text</u>:</h2>
+    <hr>
     <div class = "container-fluid wrapper text-center">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center wrapper text-center">
             <div class="col-5 border wrapper text-center" style="color:blue">
-                Explanation/Steps.
+                Addition & subtraction video
             </div>
             <div class="col-5 border wrapper text-center" style="color:green">
-                Example #1 (w/ answer)
-                <hr>
-                Example #2 (w/ answer)
-                <hr>
-                Example #3 (w/answer)
+                {% with messages = get_flashed_messages(with_categories=True) %} 
+                    <form style="font-size:1.75vw" action="/sfcalcstutorial3" method="post">
+                        <p>{{values[0]}} -sf = {{sigFigs[0]}}</p>
+                        <p><u>+ {{values[1]}} -sf = {{sigFigs[1]}}</u></p>
+                        <label for "answer0" style="font-size:1.75vw; color:black">Answer: </label>
+                        <input name="answer0" type="text" value="{{answers[0]}}" style="font-size:1.75vw" size="9">
+                        {{results[0]}}
+                        {% if messages %}
+                            {% set message = messages[0] %}
+                            <span class='{{message[0]}}'>{{message[1]}}</span>
+                        {% endif %}
+                        <hr>
+                        <p>{{values[2]}} -sf = {{sigFigs[2]}}</p>
+                        <p><u>- {{values[3]}} -sf = {{sigFigs[3]}}</u></p>
+                        <label for "answer1" style="font-size:1.75vw; color:black">Answer: </label>
+                        <input name="answer1" type="text" value="{{answers[1]}}" style="font-size:1.75vw" size="9">
+                        {{results[1]}}
+                        {% if messages %}
+                            {% set message = messages[1] %}
+                            <span class='{{message[0]}}'>{{message[1]}}</span>
+                        {% endif %}
+                        <hr>
+                        {% for item in range(4) %}
+                            {% if item < 2 %}
+                                <input name="result{{item}}" type="hidden" value="{{results[item]}}">
+                            {% endif %}
+                            <input name="value{{item}}" type="hidden" value="{{values[item]}}">
+                        {% endfor %}
+                        <a class="btn btn-primary mb-2" href="sfcalcstutorial3" role="button">New Numbers</a>
+                        {% if numCorrect < 2 %}
+                            <input class="btn btn-success mb-2" type="submit" value="Check">
+                        {% else %}
+                            <input class="btn btn-info mb-2" type="submit" value="Continue...">
+                        {% endif %}
+                    </form>
+                {% endwith %}
             </div>
         </div>
-        <br/>
-        <div class="container-fluid card border-0">
-                <div class="wrapper text-center card-header" id="headingOne">
-                    <button class="btn btn-light btn-block collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <h2 style="color:brown"><u>Wrap-Up</u></h2>
-                    </button>
-                </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body row justify-content-center wrapper text-center">
-                        <div class="col-7 border">
-                            Mult/Division Rules
-                        </div>
-                        <div class="col-4 border">
-                            Mult/Division Example
-                        </div>
-                    </div>
-                    <div class="card-body row justify-content-center wrapper text-center">
-                        <div class="col-7 border">
-                            Addition/Subtration Rules
-                        </div>
-                        <div class="col-4 border">
-                            Addition/Subtraction Example
-                        </div>
-                    </div>
-                    <div class="card-body row justify-content-center wrapper text-center">
-                        <div class="col-7 border">
-                            "Certain" # def
-                        </div>
-                        <div class="col-4 border">
-                            Certaion # examples
-                        </div>
-                    </div>
-                </div> 
-            </div>
     </div>
 {% endblock %}

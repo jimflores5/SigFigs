@@ -1,0 +1,53 @@
+{% extends "sfcalcstutorialbase.html" %}
+
+{% block content %}
+    <h2 class = 'wrapper text-left ml-2'><u>"Certain" numbers</u>:</h2>
+    <div class = "container-fluid wrapper text-center">
+        <div class="row justify-content-center">
+            <div class="col-5 border wrapper text-center" style="color:blue">
+                Explanation/Steps.
+            </div>
+            <div class="col-5 border wrapper text-center" style="color:green">
+                Example #1 (w/ answer)
+                <hr>
+                Example #2 (w/ answer)
+                <hr>
+                Example #3 (w/answer)
+            </div>
+        </div>
+        <br/>
+        <div class="container-fluid card border-0">
+                <div class="wrapper text-center card-header" id="headingOne">
+                    <button class="btn btn-light btn-block collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <h2 style="color:brown"><u>Wrap-Up</u></h2>
+                    </button>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body row justify-content-center wrapper text-center">
+                        <div class="col-7 border">
+                            Mult/Division Rules
+                        </div>
+                        <div class="col-4 border">
+                            Mult/Division Example
+                        </div>
+                    </div>
+                    <div class="card-body row justify-content-center wrapper text-center">
+                        <div class="col-7 border">
+                            Addition/Subtration Rules
+                        </div>
+                        <div class="col-4 border">
+                            Addition/Subtraction Example
+                        </div>
+                    </div>
+                    <div class="card-body row justify-content-center wrapper text-center">
+                        <div class="col-7 border">
+                            "Certain" # def
+                        </div>
+                        <div class="col-4 border">
+                            Certaion # examples
+                        </div>
+                    </div>
+                </div> 
+            </div>
+    </div>
+{% endblock %}
