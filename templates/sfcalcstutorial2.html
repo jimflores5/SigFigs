@@ -46,7 +46,7 @@
                         {% if numCorrect < 2 %}
                             <input class="btn btn-success mb-2" type="submit" value="Check">
                         {% else %}
-                            <input class="btn btn-info mb-2" type="submit" value="Continue...">
+                            <a class="btn btn-info mb-2" href="/sfcalcstutorial{{page+1}}" role="button">Continue...</a>
                         {% endif %}
                     </form>
                 {% endwith %}

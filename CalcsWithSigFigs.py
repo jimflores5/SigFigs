@@ -27,7 +27,19 @@ def addValues(first,second):
         resultDP = findDecimalPlaces(result)
         if resultDP < firstDP:
             result += "0"
+    return result
 
+def addWithPlaceholders(first,second):
+    if float(first)>=1 and float(second)>=1:
+        zeroCount = max(first.count("0"),second.count("0"))
+    elif float(first)<1:
+        zeroCount = second.count("0")
+    else:
+        zeroCount = first.count("0")
+    temp1 = float(first)/10**zeroCount
+    temp2 = float(second)/10**zeroCount
+    print(first,second,zeroCount,temp1+temp2)
+    result = str(int(round(temp1+temp2,0))*10**zeroCount)
     return result
 
 def subtractValues(first,second):
@@ -46,7 +58,18 @@ def subtractValues(first,second):
         resultDP = findDecimalPlaces(result)
         if resultDP < firstDP:
             result += "0"*(firstDP-resultDP)
+    return result
 
+def subtractWithPlaceholders(first,second):
+    if float(first)>=1 and float(second)>=1:
+        zeroCount = max(first.count("0"),second.count("0"))
+    elif float(first)<1:
+        zeroCount = second.count("0")
+    else:
+        zeroCount = first.count("0")
+    temp1 = float(first)/10**zeroCount
+    temp2 = float(second)/10**zeroCount
+    result = str(int(round(temp1-temp2,0))*10**zeroCount)
     return result
 
 def multiplyValues(value1, sf1, value2, sf2):

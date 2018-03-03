@@ -2,7 +2,7 @@ import random
 from flask import Flask, request, redirect, render_template, session, flash
 import cgi
 from StringSigFigs import MakeNumber, RoundValue, CheckAnswer, CheckRounding, ApplySciNotation
-from CalcsWithSigFigs import addValues, subtractValues, multiplyValues, divideValues, findDecimalPlaces
+from CalcsWithSigFigs import addValues, subtractValues, multiplyValues, divideValues, findDecimalPlaces, addWithPlaceholders, subtractWithPlaceholders
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -100,13 +100,22 @@ def sfcalcs():
         value2 = MakeNumber(sigFigs2,power2)
 
     if operation == 0:
-        result = addValues(value1,value2)
+        if (float(value1)>=10 and value1.find('.') == -1 and sigFigs1 < len(value1)) or (float(value2)>=10 and value2.find('.') == -1 and sigFigs2 < len(value2)):
+            result = addWithPlaceholders(value1,value2)
+        else:
+            result = addValues(value1,value2)
         return render_template('sfCalcs.html',title="Calculations with Sig Figs", value1 = value1, value2 = value2, operation = operators[operation], result = result)
     elif operation == 1 and value1 > value2:
-        result = subtractValues(value1,value2)
+        if (float(value1)>=10 and value1.find('.') == -1 and sigFigs1 < len(value1)) or (float(value2)>=10 and value2.find('.') == -1 and sigFigs2 < len(value2)):
+            result = subtractWithPlaceholders(value1,value2)
+        else:
+            result = subtractValues(value1,value2)
         return render_template('sfCalcs.html',title="Calculations with Sig Figs", value1 = value1, value2 = value2, operation = operators[operation], result = result)
-    elif operation == 1 and value1 < value2:
-        result = subtractValues(value2,value1)
+    elif operation == 1 and float(value1) < float(value2):
+        if (float(value1)>=10 and value1.find('.') == -1 and sigFigs1 < len(value1)) or (float(value2)>=10 and value2.find('.') == -1 and sigFigs2 < len(value2)):
+            result = subtractWithPlaceholders(value2,value1)
+        else:
+            result = subtractValues(value2,value1)
         return render_template('sfCalcs.html',title="Calculations with Sig Figs", value1 = value2, value2 = value1, operation = operators[operation], result = result)
     elif operation == 2:
         result = multiplyValues(value1,sigFigs1,value2,sigFigs2)
@@ -448,7 +457,6 @@ def sfcalcstutorial3():
                     flash('Try again.', 'error')
 
         return render_template('sfcalcstutorial3.html',title="Calculations with Sig Figs Tutorial", page = 3, values = values, answers = answers, results = results, numCorrect = numCorrect)
-
     else:
         numCorrect = 0
         answers = []
@@ -459,23 +467,24 @@ def sfcalcstutorial3():
         for index in range(4):
             iffyValue = True
             while iffyValue:
-                sigFig = random.randrange(1,3)
-                power = random.randrange(-3,3)
+                sigFig = random.randrange(1,7)
+                power = random.randrange(-3,2)
                 value = MakeNumber(sigFig,power)
                 iffyValue = CheckRounding(value,sigFig)
             sigFigs.append(sigFig)
             powers.append(power)
             values.append(value)
-            if index == 1:
-                results.append(addValues(values[index-1],values[index]))
-            elif index == 3 and values[index-1] < values[index]:
-                temp = values[index-1]
-                values[index-1]=values[index]
-                values[index]=temp
-                results.append(subtractValues(values[index-1],values[index]))
-            elif index == 3:
-                results.append(subtractValues(values[index-1],values[index]))
-            
+        if (float(values[0])>=10 and values[0].find('.') == -1 and sigFigs[0] < len(values[0])) or (float(values[1])>=10 and values[1].find('.') == -1 and sigFigs[1] < len(values[1])):
+            results.append(addWithPlaceholders(values[0],values[1]))
+        else:
+            results.append(addValues(values[0],values[1]))
+        if float(values[2]) < float(values[3]):
+            values[2],values[3] = values[3],values[2]
+            sigFigs[2],sigFigs[3] = sigFigs[3],sigFigs[2]
+        if (float(values[2])>=10 and values[2].find('.') == -1 and sigFigs[2] < len(values[2])) or (float(values[3])>=10 and values[3].find('.') == -1 and sigFigs[3] < len(values[3])):
+            results.append(subtractWithPlaceholders(values[2],values[3]))
+        else:
+            results.append(subtractValues(values[2],values[3]))
     return render_template('sfcalcstutorial3.html',title="Calculations with Sig Figs Tutorial", page = 3, values = values, sigFigs = sigFigs, powers = powers, answers = answers, results = results, numCorrect = numCorrect)
 
 @app.route('/sfcalcstutorial4', methods=['POST', 'GET'])
