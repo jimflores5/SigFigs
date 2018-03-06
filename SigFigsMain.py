@@ -488,8 +488,30 @@ def sfcalcstutorial3():
     return render_template('sfcalcstutorial3.html',title="Calculations with Sig Figs Tutorial", page = 3, values = values, sigFigs = sigFigs, powers = powers, answers = answers, results = results, numCorrect = numCorrect)
 
 @app.route('/sfcalcstutorial4', methods=['POST', 'GET'])
-def sfcalcstutorial4():            
-    return render_template('sfcalcstutorial4.html',title="Calculations with Sig Figs Tutorial", page = 4)
+def sfcalcstutorial4():
+    if request.method == 'POST':
+        displayText = int(request.form['displayText'])
+        response = int(request.form['response'])
+        example = int(request.form['example'])
+        if displayText == 0 and response < 2:
+            answer = int(request.form['answer'])
+            if example == 0 and answer==3:
+                response += 1
+            else:
+                flash('This is NOT a trick question.  Count again...', 'error')
+        elif displayText <= 2 and response < 1:
+            response += 1
+            example += 1
+        else:
+            response = 0
+            example += 1
+            displayText += 1
+    else:
+        displayText = 0
+        example = 0
+        response = 0
+
+    return render_template('sfcalcstutorial4.html',title="Calculations with Sig Figs Tutorial", page = 4, displayText = displayText, example = example, response = response)
 
 if __name__ == '__main__':
     app.run()

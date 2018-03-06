@@ -1,18 +1,88 @@
 {% extends "sfcalcstutorialbase.html" %}
 
 {% block content %}
-    <h2 class = 'wrapper text-left ml-2'><u>"Certain" numbers</u>:</h2>
-    <div class = "container-fluid wrapper text-center">
+    <h2 class = 'wrapper text-left ml-2'><u>"Certain" numbers</u>: <span style="color:blue">Sometimes, there is NO error.</span></h2>
+    <div class = "container-fluid wrapper text-center" style="font-size:1.75vw">
         <div class="row justify-content-center">
-            <div class="col-5 border wrapper text-center" style="color:blue">
-                Explanation/Steps.
+            <div class="col-5 border wrapper text-left" style="color:green">
+                <ul>
+                    <li>Numbers that result from <em>counting</em> are considered 'perfect'.</li>
+                    {% if displayText > 0 %}
+                        <li style="color:purple"><em>Counted</em> numbers do not affect sig figs in calculations.</li>
+                    {% endif %}
+                    {% if displayText > 1 %}
+                        <li>Numbers that are <em>defined</em> are also considered 'perfect'.</li>
+                    {% endif %}
+                    {% if displayText >= 2 %}
+                        <li style="color:brown"><em>Defined</em> numbers do not affect sig figs in calculations.</li>
+                    {% endif %}
+                </ul>
             </div>
             <div class="col-5 border wrapper text-center" style="color:green">
-                Example #1 (w/ answer)
-                <hr>
-                Example #2 (w/ answer)
-                <hr>
-                Example #3 (w/answer)
+                {% if displayText == 0 %}
+                    {% with messages = get_flashed_messages(with_categories=True) %} 
+                        <form style="font-size:1.75vw" action="/sfcalcstutorial4" method="post">
+                            <figure class="figure">
+                                <img src="{{url_for('static', filename='CertainEx1.png')}}" class="figure-img img-fluid" style="width:65%; height:65%">
+                            </figure>
+                            {% if response == 0%}
+                                <label for "answer" style="font-size:1.75vw; color:black">Answer: </label>
+                                <input name="answer" type="text" value="{{answer}}" style="font-size:1.75vw" size="9">
+                                <br/>
+                                {% for category,message in messages %}
+                                    <span class='{{category}}'>{{message}}</span>
+                                {% endfor %}
+                                <br/>
+                                <input class="btn btn-success mb-2" type="submit" value="Check">
+                            {% elif response == 1 %}
+                                <span style="font-size:1.75vw">Are you sure?</span><br/>
+                                <input class="btn btn-success mb-2 btn-lg" type="submit" value="Yes">
+                                <input class="btn btn-danger mb-2" type="submit" value="No" disabled>
+                                <input name="answer" type="hidden" value="3">
+                            {% else %}
+                                <span style="font-size:1.75vw">Are you <em style="color:red">CERTAIN</em>????</span><br/>
+                                <input class="btn btn-success btn-lg mb-2" type="submit" value="YES!!!">
+                                <input class="btn btn-danger mb-2 btn-sm" type="submit" value="No" disabled>
+                            {% endif %}
+                            <br/>
+                            <input name="example" type="hidden" value="{{example}}">
+                            <input name="response" type="hidden" value="{{response}}">
+                            <input name="displayText" type="hidden" value="{{displayText}}">
+                        </form>
+                    {% endwith %}
+                {% elif displayText == 1 %}
+                    <form style="font-size:1.75vw" action="/sfcalcstutorial4" method="post">
+                        {% if example == 1 %}
+                            <img src="{{url_for('static', filename='CertainEx1a.png')}}" class="figure-img img-fluid" style="width:80%; height:80%">
+                        {% else %}
+                            <img src="{{url_for('static', filename='CertainEx1b.png')}}" class="figure-img img-fluid" style="width:80%; height:80%">
+                        {% endif %}
+                        <br/>
+                        <input class="btn btn-info mb-2" type="submit" value="Continue...">
+                        <input name="example" type="hidden" value="{{example}}">
+                        <input name="response" type="hidden" value="{{response}}">
+                        <input name="displayText" type="hidden" value="{{displayText}}">
+                    </form>
+                {% elif displayText == 2 %}
+                    <form style="font-size:1.75vw" action="/sfcalcstutorial4" method="post">
+                        {% if example == 3 %}
+                            <img src="{{url_for('static', filename='CertainEx2.png')}}" class="figure-img img-fluid" style="width:80%; height:80%">
+                        {% else %}
+                            <img src="{{url_for('static', filename='CertainEx2a.png')}}" class="figure-img img-fluid" style="width:80%; height:80%">
+                        {% endif %}
+                        <br/>
+                        <input class="btn btn-info mb-2" type="submit" value="Continue...">
+                        <input name="example" type="hidden" value="{{example}}">
+                        <input name="response" type="hidden" value="{{response}}">
+                        <input name="displayText" type="hidden" value="{{displayText}}">
+                    </form>
+                {% else %}
+                    <figure class="figure">
+                        <img src="{{url_for('static', filename='CertainEx1.png')}}" class="figure-img img-fluid" style="width:65%; height:65%">
+                        <hr>
+                        <img src="{{url_for('static', filename='CertainEx2.png')}}" class="figure-img img-fluid" style="width:65%; height:65%">
+                    </figure>
+                {% endif %}
             </div>
         </div>
         <br/>
@@ -44,7 +114,7 @@
                             "Certain" # def
                         </div>
                         <div class="col-4 border">
-                            Certaion # examples
+                            Certain # examples
                         </div>
                     </div>
                 </div> 
