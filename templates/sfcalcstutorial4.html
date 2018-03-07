@@ -13,8 +13,11 @@
                     {% if displayText > 1 %}
                         <li>Numbers that are <em>defined</em> are also considered 'perfect'.</li>
                     {% endif %}
-                    {% if displayText >= 2 %}
+                    {% if displayText >= 2 and example > 3 %}
                         <li style="color:brown"><em>Defined</em> numbers do not affect sig figs in calculations.</li>
+                    {% endif %}
+                    {% if displayText >= 2 and example > 4 %}
+                        <li style="color:red">Check the 'Wrap-Up', and then move on to the practice page.</li>
                     {% endif %}
                 </ul>
             </div>
@@ -80,44 +83,40 @@
                     <figure class="figure">
                         <img src="{{url_for('static', filename='CertainEx1.png')}}" class="figure-img img-fluid" style="width:65%; height:65%">
                         <hr>
-                        <img src="{{url_for('static', filename='CertainEx2.png')}}" class="figure-img img-fluid" style="width:65%; height:65%">
+                        <img src="{{url_for('static', filename='CertainEx2.png')}}" class="figure-img img-fluid" style="width:60%; height:60%">
                     </figure>
+                    <a class="btn btn-primary mr-2 mb-2" href="/" role="button">Main Menu</a>
+                    <a class="btn btn-danger mb-2" href="/sfcalcs" role="button">More Practice</a>
                 {% endif %}
             </div>
         </div>
         <br/>
         <div class="container-fluid card border-0">
-                <div class="wrapper text-center card-header" id="headingOne">
-                    <button class="btn btn-light btn-block collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <h2 style="color:brown"><u>Wrap-Up</u></h2>
-                    </button>
-                </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body row justify-content-center wrapper text-center">
-                        <div class="col-7 border">
-                            Mult/Division Rules
-                        </div>
-                        <div class="col-4 border">
-                            Mult/Division Example
-                        </div>
-                    </div>
-                    <div class="card-body row justify-content-center wrapper text-center">
-                        <div class="col-7 border">
-                            Addition/Subtration Rules
-                        </div>
-                        <div class="col-4 border">
-                            Addition/Subtraction Example
-                        </div>
-                    </div>
-                    <div class="card-body row justify-content-center wrapper text-center">
-                        <div class="col-7 border">
-                            "Certain" # def
-                        </div>
-                        <div class="col-4 border">
-                            Certain # examples
-                        </div>
-                    </div>
-                </div> 
+            <div class="wrapper text-center card-header" id="headingOne">
+                <button class="btn btn-light btn-block collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h2 style="color:brown"><u>Wrap-Up</u></h2>
+                </button>
             </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body row justify-content-center wrapper text-center">
+                    <div class="col-7 border">
+                        <figure class="figure mt-2 mb-0">
+                            <img src="{{url_for('static', filename='MultDivRule.png')}}" class="figure-img img-fluid" style="width:85%; height:85%">
+                        </figure>
+                    </div>
+                    <div class="col-4 border">
+                        Mult/Division Example
+                    </div>
+                    <div class="col-7 border">
+                        <figure class="figure mt-2 mb-0">
+                            <img src="{{url_for('static', filename='AddSubRule.png')}}" class="figure-img img-fluid" style="width:85%; height:85%">
+                        </figure>
+                    </div>
+                    <div class="col-4 border">
+                        Addition/Subtraction Example
+                    </div>
+                </div>
+            </div> 
+        </div>
     </div>
 {% endblock %}

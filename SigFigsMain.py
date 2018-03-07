@@ -494,8 +494,8 @@ def sfcalcstutorial4():
         response = int(request.form['response'])
         example = int(request.form['example'])
         if displayText == 0 and response < 2:
-            answer = int(request.form['answer'])
-            if example == 0 and answer==3:
+            answer = request.form['answer']
+            if example == 0 and answer=='3':
                 response += 1
             else:
                 flash('This is NOT a trick question.  Count again...', 'error')
