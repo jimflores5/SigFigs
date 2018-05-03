@@ -367,7 +367,9 @@ def scinottutorial3():
             values.append(request.form['value'+str(item)])
             powers.append(request.form['power'+str(item)])
             sciValues.append(request.form['sciValue'+str(item)])
-            if CheckAnswer(values[item], answers[item]):
+            if ',' in answers[item]:
+                flash('Please remove the comma(s) from your answer.', 'error')
+            elif CheckAnswer(values[item], answers[item]):
                 flash('Correct!  :-)', 'correct')
                 numCorrect += 1
             else:
