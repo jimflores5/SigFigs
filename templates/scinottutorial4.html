@@ -1,0 +1,21 @@
+{% extends "scinottutorialbase.html" %}
+
+{% block content %}
+    <div class="container-fluid border-0 wrapper text-center" style="font-size:2vw">
+        <div class="row justify-content-center wrapper text-center">
+            <div class="col-7">
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='StdToSciNot.png')}}" class="figure-img img-fluid">
+                </figure>
+            </div>
+        </div>
+        <div class="row justify-content-center wrapper text-center">
+            <div class="col-7">
+                <figure class="figure">
+                    <img src="{{url_for('static', filename='SciToStdNot.png')}}" class="figure-img img-fluid">
+                </figure>
+            </div>
+        </div>
+        <a class="btn btn-success btn-lg mr-2" href="/scinotation" role="button">Practice</a>
+    </div>
+{% endblock %}

@@ -4,10 +4,9 @@
     <div class="container-fluid border-0" style="font-size:2vw">
         <div class="row justify-content-center wrapper text-center">
             <div class="col-4 border">
-                <figure class="figure">
-                    <img src="{{url_for('static', filename='TempImage.png')}}" class="figure-img img-fluid rounded">
-                    <figcaption class="figure-caption">Video showing how to convert sci notation into standard notation.</figcaption>
-                </figure>
+                <div class="border embed-responsive embed-responsive-16by9">
+                    <video controls src="{{url_for('static', filename='SciNot3.mov')}}"></video>
+                </div>
             </div>
             <div class="col-2 border">
                 <figure class="figure">
@@ -36,9 +35,8 @@
                         {% if numCorrect != 4 %}
                             <input class="btn btn-success mb-3" type="submit" value="Check">
                         {% else %}
-                            <a class="btn btn-danger mr-2" href="/scinottutorial3" role="button">Refresh</a>
-                            <a class="btn btn-primary mr-2" href="/" role="button">Main Menu</a>
-                            <a class="btn btn-success mr-2" href="/scinotation" role="button">More Practice</a>
+                            <a class="btn btn-danger mr-2" href="/scinottutorial3" role="button">New Practice Numbers</a>
+                            <a class="btn btn-success mr-2" href="/scinottutorial{{page+1}}" role="button">Wrap-Up</a>
                         {% endif %}
                     </form>
                 {% endwith %}

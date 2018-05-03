@@ -392,6 +392,10 @@ def scinottutorial3():
 
     return render_template('scinottutorial3.html',title="Scientific Notation Tutorial", page = 3, values = values, answers = answers, sciValues = sciValues, powers = powers, numCorrect = numCorrect)
 
+@app.route('/scinottutorial4', methods=['POST', 'GET'])
+def scinottutorial4():
+    return render_template('scinottutorial4.html',title="Scientific Notation Tutorial", page = 4)
+
 @app.route('/sfcalcstutorial1', methods=['POST', 'GET'])
 def sfcalcstutorial1():
     return render_template('sfcalcstutorial1.html',title="Calculations with Sig Figs Tutorial", page = 1)
