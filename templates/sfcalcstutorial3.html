@@ -6,7 +6,9 @@
     <div class = "container-fluid wrapper text-center">
         <div class="row justify-content-center wrapper text-center">
             <div class="col-5 border wrapper text-center" style="color:blue">
-                Addition & subtraction video
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video controls src="{{url_for('static', filename='Placeholder.mov')}}"></video>
+                </div>
             </div>
             <div class="col-5 border wrapper text-center" style="color:purple">
                 {% with messages = get_flashed_messages(with_categories=True) %} 

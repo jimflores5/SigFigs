@@ -4,7 +4,7 @@
     <div class="container-fluid border-0" style="font-size:2vw">
         <div class="row justify-content-center wrapper text-center">
             <div class="col-4 border">
-                <div class="border embed-responsive embed-responsive-16by9">
+                <div class="embed-responsive embed-responsive-16by9">
                     <video controls src="{{url_for('static', filename='SciNot1.mov')}}"></video>
                 </div>
                 <hr>
@@ -12,12 +12,12 @@
                     <video controls src="{{url_for('static', filename='SciNot2.mov')}}"></video>
                 </div>
             </div>
-            <div class="col-2 border">
+            <div class="col-2 align-self-center">
                 <figure class="figure">
                     <img src="{{url_for('static', filename='TryIt1.png')}}" class="figure-img img-fluid">
                 </figure>
             </div>
-            <div class="col-4 border wrapper text-center">
+            <div class="col-4 border wrapper text-center align-self-center">
                 {% with messages = get_flashed_messages(with_categories=True) %} 
                     <form action="/scinottutorial2" method="post">
                         <ul type="none" class="wrapper text-left mt-3 pl-1" style="font-size: 1.75vw">
@@ -41,8 +41,8 @@
                         {% if numCorrect != 4 %}
                             <input class="btn btn-success mb-3" type="submit" value="Check">
                         {% else %}
-                            <a class="btn btn-danger mr-2" href="/scinottutorial2" role="button">Refresh</a>
-                            <a class="btn btn-secondary mr-2" href="/scinottutorial{{page+1}}" role="button">Next &raquo;</a>
+                            <a class="btn btn-danger mr-2 mb-3" href="/scinottutorial2" role="button">Refresh</a>
+                            <a class="btn btn-secondary mr-2 mb-3" href="/scinottutorial{{page+1}}" role="button">Next &raquo;</a>
                         {% endif %}
                     </form>
                 {% endwith %}
