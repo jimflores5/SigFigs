@@ -1,16 +1,15 @@
 {% extends "sfcalcstutorialbase.html" %}
 
 {% block content %}
-    <h2 class = 'wrapper text-left ml-2'><u>Intro text</u>:</h2>
-    <hr>
+    <h2 class = 'wrapper text-left ml-2' style="color:blue"><u>Multiplication and Division</u>:</h2>
     <div class = "container-fluid wrapper text-center">
         <div class="row justify-content-center">
-            <div class="col-5 border wrapper text-center" style="color:blue">
+            <div class="col-5 border-0 wrapper text-center align-self-center" style="color:blue">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <video controls src="{{url_for('static', filename='Placeholder.mov')}}"></video>
+                    <video controls src="{{url_for('static', filename='MultDiv.mov')}}"></video>
                 </div>
             </div>
-            <div class="col-5 border wrapper text-center" style="color:green">
+            <div class="col-6 border wrapper text-center align-self-center" style="color:green">
                 {% with messages = get_flashed_messages(with_categories=True) %} 
                     <form style="font-size:1.75vw" action="/sfcalcstutorial2" method="post">
                         <p>{{values[0]}}</p>
