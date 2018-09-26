@@ -1,43 +1,65 @@
 {% extends "sfcalcstutorialbase.html" %}
 
 {% block content %}
-    <h2 class = 'wrapper text-left ml-2'><u>Intro text</u>:</h2>
+    {% if displayText < 8 %}
+        <h2 class = 'wrapper text-left ml-2' style="color:blue"><u><em>ALL</em> measurements contain uncertainty</u>:</h2>
+    {% else %}
+        <h2 class = 'wrapper text-left ml-2' style="color:blue"><u>Significant figures help us express the uncertainty in a calculated value</u>:</h2>
+    {% endif %}
     <div class = "container-fluid wrapper text-center">
-        <div class="row justify-content-center">
-            <div class="col-4 border wrapper text-center" style="color:blue">
+        {% if displayText == 1 %}
+            <div class="row justify-content-center">
+                <div class="col-4 border wrapper text-center" style="color:blue">
+                    <figure class="figure">
+                        <img src="{{url_for('static', filename='MeasExLen.png')}}" class="figure-img img-fluid" style="width:90%; height:90%">
+                    </figure>
+                </div>
+                <div class="col-4 border wrapper text-center" style="color:green">
+                    <figure class="figure">
+                        <img src="{{url_for('static', filename='MeasExMass.png')}}" class="figure-img img-fluid" style="width:70%; height:70%">
+                    </figure>
+                </div>
+                <div class="col-4 border wrapper text-center" style="color:purple">
+                    <figure class="figure">
+                        <img src="{{url_for('static', filename='MeasExVol.png')}}" class="figure-img img-fluid" style="width:70%; height:70%">
+                    </figure>
+                </div>
+            </div>
+            <p style="color:green; font-size:1.75vw">When measurements are used in calculations, the uncertainty in the answer is LARGER than the error present in the original data.</p>
+        {% elif displayText < 8 %}
+            <div class="border wrapper text-left">
                 <figure class="figure">
-                    <img src="{{url_for('static', filename='MeasExLen.png')}}" class="figure-img img-fluid" style="width:90%; height:90%">
+                    <img src="{{url_for('static', filename='TempImage.png')}}" class="figure-img img-fluid" style="width:50%; height:10%">
                 </figure>
             </div>
-            <div class="col-4 border wrapper text-center" style="color:green">
-                <figure class="figure">
-                    <img src="{{url_for('static', filename='MeasExMass.png')}}" class="figure-img img-fluid" style="width:70%; height:70%">
-                </figure>
+            <p style="color:green; font-size:1.75vw">{{imageText[displayText-2]}}</p>
+        {% else %}
+            <div class="row justify-content-center wrapper text-center">
+                <div class="col-5 border wrapper text-center">
+                    Division/multiplication examples...
+                </div>
+                <div class="col-5 border wrapper text-center">
+                    ...with potential answers.
+                </div>
             </div>
-            <div class="col-4 border wrapper text-center" style="color:purple">
-                <figure class="figure">
-                    <img src="{{url_for('static', filename='MeasExVol.png')}}" class="figure-img img-fluid" style="width:70%; height:70%">
-                </figure>
+            <br/>
+            <div class="row justify-content-center wrapper text-center">
+                <div class="col-5 border wrapper text-center">
+                    Addition/subtraction examples...
+                </div>
+                <div class="col-5 border wrapper text-center">
+                    ...with potential answers.
+                </div>
             </div>
-        </div>
-        <p style="color:red; font-size:1.75vw">Prompt to spur thinking + "Continue" button.</p>
-        <div class="row justify-content-center wrapper text-center">
-            <div class="col-5 border wrapper text-center">
-                Division/multiplication examples...
-            </div>
-            <div class="col-5 border wrapper text-center">
-                ...with potential answers.
-            </div>
-        </div>
-        <br/>
-        <div class="row justify-content-center wrapper text-center">
-            <div class="col-5 border wrapper text-center">
-                Addition/subtraction examples...
-            </div>
-            <div class="col-5 border wrapper text-center">
-                ...with potential answers.
-            </div>
-        </div>
+            <p class="wrapper text-center" style="color:brown; font-size:1.75vw">The following slides provide some basic rules and examples for identifying how many sig figs to keep in a calculated answer.</p>
+        {% endif %}
+        <form style="font-size:1.75vw" action="/sfcalcstutorial1" method="post">
+            <input name="displayText" type="hidden" value="{{displayText}}">
+            {% if displayText < 8 %}
+                <input class="btn btn-success" type="submit" value="Continue">
+            {% else %}
+                <a class="btn btn-info" href="/sfcalcstutorial2" role="button">Ok</a>
+            {% endif %}
+        </form>
     </div>
-    <p class="wrapper text-center" style="color:brown; font-size:1.75vw">Prompt to spur thinking + "Continue" button.</p>
 {% endblock %}
