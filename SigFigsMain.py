@@ -399,11 +399,11 @@ def scinottutorial4():
 @app.route('/sfcalcstutorial1', methods=['POST', 'GET'])
 def sfcalcstutorial1():
     if request.method == 'POST':
-        imageText = ['Assume two students measure the length of a small tile.  They will likely record different results, but the variance is small in this case.',
-        'To predict the length of two tiles, the students simply double their measurements.  Note that the difference (uncertainty) in their results is now larger than before.',
+        imageText = ['Assume two students measure the length of a small tile.  Their results are not the same, but the difference is small in this case.',
+        'To predict the length of two tiles, the students simply double their measurements.  Note that the difference (uncertainty) in their results is LARGER than before.',
         'For five tiles, something interesting happens with the error in the predicted lengths.',
         'The difference between the results becomes too large to keep 2 decimal places, so the guess digit moves into the tenths place.',
-        'What if the students calculated the area of the tile?','Multiplying measurements also increases error.','Since two digits are now uncertain, we must round each answer to maintain a single guess digit.']
+        'What if each student calculated the area of the tile?','Multiplying measurements also increases error.','Since two digits are now uncertain, we must round each answer to maintain a single guess digit.']
         displayText = int(request.form['displayText']) + 1
         imageName = 'SFCalcs'+str(displayText-1)+'.png'
         return render_template('sfcalcstutorial1.html',title="Calculations with Sig Figs Tutorial", page = 1, displayText = displayText, imageText = imageText, imageName = imageName)

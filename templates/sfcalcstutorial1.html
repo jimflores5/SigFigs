@@ -1,10 +1,10 @@
 {% extends "sfcalcstutorialbase.html" %}
 
 {% block content %}
-    {% if displayText < 8 %}
+    {% if displayText < 9 %}
         <h2 class = 'wrapper text-left ml-2' style="color:purple"><u><em>ALL</em> measurements contain uncertainty</u>:</h2>
     {% else %}
-        <h2 class = 'wrapper text-left ml-2' style="color:purple"><u>Significant figures help us express the uncertainty in a calculated value</u>:</h2>
+        <h2 class = 'wrapper text-left ml-2' style="color:blue"><u>Significant figures help us express the uncertainty in a calculated value</u>:</h2>
     {% endif %}
     <div class = "container-fluid wrapper text-center">
         {% if displayText == 1 %}
@@ -27,31 +27,39 @@
             </div>
             <p style="color:green; font-size:1.75vw">When measurements are used in calculations, the uncertainty in the answer is LARGER than the error present in the original data.</p>
         {% elif displayText < 9 %}
-            <div class="border wrapper text-center">
+            <div class="border-bottom wrapper text-center">
                 <figure class="figure">
                     <img src="{{url_for('static', filename=imageName)}}" class="figure-img img-fluid" {% if displayText > 5 %} style="width:70%; height:70%" {% endif %}>
                 </figure>
             </div>
             <p style="color:green; font-size:1.75vw">{{imageText[displayText-2]}}</p>
         {% else %}
-            <div class="row justify-content-center wrapper text-center">
-                <div class="col-5 border wrapper text-center">
-                    Division/multiplication examples...
+            <div class="row border justify-content-center wrapper text-center">
+                <div class="col-5 border-right wrapper text-center align-self-center">
+                    <figure class="figure">
+                        <img src="{{url_for('static', filename='SFCalcs8.png')}}" class="figure-img img-fluid">
+                    </figure>
                 </div>
-                <div class="col-5 border wrapper text-center">
-                    ...with potential answers.
+                <div class="col-5 wrapper text-center align-self-center">
+                    <figure class="figure">
+                        <img src="{{url_for('static', filename='SFCalcs9.png')}}" class="figure-img img-fluid" style="width:80%; height:70%">
+                    </figure>
                 </div>
             </div>
             <br/>
-            <div class="row justify-content-center wrapper text-center">
-                <div class="col-5 border wrapper text-center">
-                    Addition/subtraction examples...
+            <div class="row border justify-content-center wrapper text-center">
+                <div class="col-5 border-right wrapper text-center align-self-center">
+                    <figure class="figure">
+                        <img src="{{url_for('static', filename='SFCalcs10.png')}}" class="figure-img img-fluid" style="width:80%; height:70%">
+                    </figure>
                 </div>
-                <div class="col-5 border wrapper text-center">
-                    ...with potential answers.
+                <div class="col-5 wrapper text-center align-self-center">
+                    <figure class="figure">
+                        <img src="{{url_for('static', filename='SFCalcs11.png')}}" class="figure-img img-fluid">
+                    </figure>
                 </div>
             </div>
-            <p class="wrapper text-center" style="color:brown; font-size:1.75vw">The following slides provide some basic rules and examples for identifying how many sig figs to keep in a calculated answer.</p>
+            <p class="wrapper text-center" style="color:brown; font-size:1.85vw">Click 'Ok' to examine some basic rules and examples for identifying how many sig figs to keep in a calculated answer.</p>
         {% endif %}
         <form style="font-size:1.75vw" action="/sfcalcstutorial1" method="post">
             <input name="displayText" type="hidden" value="{{displayText}}">
