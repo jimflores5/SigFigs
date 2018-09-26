@@ -2,9 +2,9 @@
 
 {% block content %}
     {% if displayText < 8 %}
-        <h2 class = 'wrapper text-left ml-2' style="color:blue"><u><em>ALL</em> measurements contain uncertainty</u>:</h2>
+        <h2 class = 'wrapper text-left ml-2' style="color:purple"><u><em>ALL</em> measurements contain uncertainty</u>:</h2>
     {% else %}
-        <h2 class = 'wrapper text-left ml-2' style="color:blue"><u>Significant figures help us express the uncertainty in a calculated value</u>:</h2>
+        <h2 class = 'wrapper text-left ml-2' style="color:purple"><u>Significant figures help us express the uncertainty in a calculated value</u>:</h2>
     {% endif %}
     <div class = "container-fluid wrapper text-center">
         {% if displayText == 1 %}
@@ -26,10 +26,10 @@
                 </div>
             </div>
             <p style="color:green; font-size:1.75vw">When measurements are used in calculations, the uncertainty in the answer is LARGER than the error present in the original data.</p>
-        {% elif displayText < 8 %}
-            <div class="border wrapper text-left">
+        {% elif displayText < 9 %}
+            <div class="border wrapper text-center">
                 <figure class="figure">
-                    <img src="{{url_for('static', filename='TempImage.png')}}" class="figure-img img-fluid" style="width:50%; height:10%">
+                    <img src="{{url_for('static', filename=imageName)}}" class="figure-img img-fluid" {% if displayText > 5 %} style="width:70%; height:70%" {% endif %}>
                 </figure>
             </div>
             <p style="color:green; font-size:1.75vw">{{imageText[displayText-2]}}</p>
@@ -55,7 +55,7 @@
         {% endif %}
         <form style="font-size:1.75vw" action="/sfcalcstutorial1" method="post">
             <input name="displayText" type="hidden" value="{{displayText}}">
-            {% if displayText < 8 %}
+            {% if displayText < 9 %}
                 <input class="btn btn-success" type="submit" value="Continue">
             {% else %}
                 <a class="btn btn-info" href="/sfcalcstutorial2" role="button">Ok</a>
