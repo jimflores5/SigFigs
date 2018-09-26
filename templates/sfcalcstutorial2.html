@@ -9,16 +9,27 @@
                     <video controls src="{{url_for('static', filename='MultDiv.mov')}}"></video>
                 </div>
             </div>
-            <div class="col-6 border wrapper text-center align-self-center" style="color:green">
+            <div class="col-6 border wrapper text-center align-self-center" style="color:brown">
                 {% with messages = get_flashed_messages(with_categories=True) %} 
                     <form style="font-size:1.75vw" action="/sfcalcstutorial2" method="post">
                         <p>{{values[0]}}</p>
                         <p><u>x {{values[1]}}</u></p>
                         <label for "answer0" style="font-size:1.75vw; color:black">Answer: </label>
-                        <input name="answer0" type="text" value="{{answers[0]}}" style="font-size:1.75vw" size="9">
+                        <input name="answer0" type="text" value="{{answers[0]}}" style="font-size:1.75vw" size="9"><br/>
                         {% if messages %}
                             {% set message = messages[0] %}
-                            <span class='{{message[0]}}'>{{message[1]}}</span>
+                            {% if message[0] != 'error' %}
+                                <span class='{{message[0]}}' style="font-size:1.5vw">{{message[1]}}</span>
+                            {% else %}
+                                <div class="btn-group dropright">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14pt; color:red">
+                                        {{message[1]}}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <p class="dropdown-item" style="font-size:1.75vw; color:red">{{results[0]}}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
                         {% endif %}
                         <hr>
                         {% if flip %}
@@ -30,10 +41,21 @@
                             <p>{{values[3]}}</p>
                         {% endif %}
                         <label for "answer1" style="font-size:1.75vw; color:black">Answer: </label>
-                        <input name="answer1" type="text" value="{{answers[1]}}" style="font-size:1.75vw" size="9">
+                        <input name="answer1" type="text" value="{{answers[1]}}" style="font-size:1.75vw" size="9"><br/>
                         {% if messages %}
                             {% set message = messages[1] %}
-                            <span class='{{message[0]}}'>{{message[1]}}</span>
+                            {% if message[0] != 'error' %}
+                                <span class='{{message[0]}}' style="font-size:1.5vw">{{message[1]}}</span>
+                            {% else %}
+                                <div class="btn-group dropright">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14pt; color:red">
+                                        {{message[1]}}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <p class="dropdown-item" style="font-size:1.75vw; color:red">{{results[1]}}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
                         {% endif %}
                         <hr>
                         {% for item in range(4) %}
@@ -43,11 +65,11 @@
                             <input name="value{{item}}" type="hidden" value="{{values[item]}}">
                         {% endfor %}
                         <input name="flip" type="hidden" value="{{flip}}">
-                        <a class="btn btn-primary mb-2" href="sfcalcstutorial2" role="button">New Numbers</a>
+                        <a class="btn btn-primary mb-3" href="sfcalcstutorial2" role="button">New Numbers</a>
                         {% if numCorrect < 2 %}
-                            <input class="btn btn-success mb-2" type="submit" value="Check">
+                            <input class="btn btn-success mb-3" type="submit" value="Check">
                         {% else %}
-                            <a class="btn btn-info mb-2" href="/sfcalcstutorial{{page+1}}" role="button">Continue...</a>
+                            <a class="btn btn-info mb-3" href="/sfcalcstutorial{{page+1}}" role="button">Continue...</a>
                         {% endif %}
                     </form>
                 {% endwith %}

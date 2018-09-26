@@ -416,7 +416,7 @@ def sfcalcstutorial2():
                     flash('Correct!  :-)', 'correct')
                     numCorrect += 1
                 else:
-                    flash('Try again.', 'error')
+                    flash('Try again, or click to see the answer.', 'error')
 
         return render_template('sfcalcstutorial2.html',title="Calculations with Sig Figs Tutorial", page = 2, values = values, answers = answers, results = results, numCorrect = numCorrect)
 
@@ -460,7 +460,7 @@ def sfcalcstutorial3():
                     flash('Correct!  :-)', 'correct')
                     numCorrect += 1
                 else:
-                    flash('Try again.', 'error')
+                    flash('Try again, or click to see the answer.', 'error')
 
         return render_template('sfcalcstutorial3.html',title="Calculations with Sig Figs Tutorial", page = 3, values = values, answers = answers, results = results, numCorrect = numCorrect)
     else:
