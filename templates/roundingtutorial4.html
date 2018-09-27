@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <div class="container-fluid">
                         <div class="row wrapper text-center">
-                            <div class="col-4 border embed-responsive embed-responsive-4by3">
+                            <div class="col-4 border embed-responsive embed-responsive-16by9">
                                 <video controls src="{{url_for('static', filename='Overrounding.mov')}}"></video>
                             </div>
                             <div class="col-6">
@@ -42,11 +42,13 @@
                 <div class="card-body">
                     <div class="container-fluid">
                         <div class="row wrapper text-center">
-                            <div class="col-6 border-right">
-                                30 - 60 s video tutorial.
+                            <div class="col-4 border-right embed-responsive embed-responsive-16by9">
+                                <video controls src="{{url_for('static', filename='Preceding0s.mov')}}"></video>
                             </div>
-                            <div class="col-6">
-                                Image with highlights/Big Ideas
+                            <div class="col-6 wrapper text-center align-self-center">
+                                <figure class="figure">
+                                    <img src="{{url_for('static', filename='Preceding0s.png')}}" class="figure-img img-fluid">
+                                </figure>
                             </div>
                         </div> 
                     </div>
@@ -66,8 +68,8 @@
                 <div class="card-body">
                     <div class="container-fluid">
                         <div class="row wrapper text-center">
-                            <div class="col-6 border-right">
-                                30 - 60 s video tutorial.
+                            <div class="col-4 border-right">
+                                Video goes here...
                             </div>
                             <div class="col-6">
                                 <figure class="figure">
@@ -82,7 +84,7 @@
     </div>
     <br/>
     <div class="wrapper text-left ml-3">
-        <h3>
+        <h3 style="color:brown">
             <u>Now take the next step</u>:
             <a class="btn btn-success ml-2" href="/roundingsf" role="button">Practice Rounding to Sig Figs</a>
         </h3>
