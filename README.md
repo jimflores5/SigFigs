@@ -15,6 +15,4 @@
  - HTML
  - Flask
  - Bootstrap
- - JavaScript (maybe)
- - SQLAlchemy (if login functionality is needed)
- - Google Classroom (maybe)
+ - JavaScript
