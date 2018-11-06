@@ -19,8 +19,8 @@
                         <ul type="a" class="wrapper text-left mt-3" style="font-size: 1.75vw">
                             {% for item in range(4) %}
                             <li>
-                                <label for "answer{{item}}">{{sciValues[item]}}x10<sup style="vertical-align: 0.5em">{{powers[item]}}</sup>= </label>
-                                <input name="answer{{item}}" type="text" value="{{answers[item]}}" size="9"></br>
+                                <label for="answer{{item}}">{{sciValues[item]}}x10<sup style="vertical-align: 0.5em">{{powers[item]}}</sup>= </label>
+                                <input name="answer{{item}}" type="text" value="{{answers[item]}}" size="9"><br/>
                             </li>
                             {% if messages %}
                                 {% set message = messages[item] %}

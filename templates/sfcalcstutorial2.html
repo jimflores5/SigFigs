@@ -14,7 +14,7 @@
                     <form style="font-size:1.75vw" action="/sfcalcstutorial2" method="post">
                         <p>{{values[0]}}</p>
                         <p><u>x {{values[1]}}</u></p>
-                        <label for "answer0" style="font-size:1.75vw; color:black">Answer: </label>
+                        <label for="answer0" style="font-size:1.75vw; color:black">Answer: </label>
                         <input name="answer0" type="text" value="{{answers[0]}}" style="font-size:1.75vw" size="9"><br/>
                         {% if messages %}
                             {% set message = messages[0] %}
@@ -40,7 +40,7 @@
                             <p><u>{{values[2]}}</u></p>
                             <p>{{values[3]}}</p>
                         {% endif %}
-                        <label for "answer1" style="font-size:1.75vw; color:black">Answer: </label>
+                        <label for="answer1" style="font-size:1.75vw; color:black">Answer: </label>
                         <input name="answer1" type="text" value="{{answers[1]}}" style="font-size:1.75vw" size="9"><br/>
                         {% if messages %}
                             {% set message = messages[1] %}

@@ -23,9 +23,9 @@
                         <ul type="none" class="wrapper text-left mt-3 pl-1" style="font-size: 1.75vw">
                             {% for item in range(4) %}
                                 <li>
-                                    <label for "decimal{{item}}">{{values[item]}} = </label>
+                                    <label for="decimal{{item}}">{{values[item]}} = </label>
                                     <input name="decimal{{item}}" type="text" value="{{decimals[item]}}" size="3">
-                                    <label for "exponent{{item}}">x10</label>
+                                    <label for="exponent{{item}}">x10</label>
                                     <sup style="vertical-align: 1em"><input name="exponent{{item}}" type="text" value="{{exponents[item]}}" size="1"></sup></br>
                                 </li>
                                 {% if messages %}
