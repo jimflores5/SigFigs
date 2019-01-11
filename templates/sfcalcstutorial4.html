@@ -29,7 +29,7 @@
                                 <img src="{{url_for('static', filename='CertainEx1.png')}}" class="figure-img img-fluid" style="width:65%; height:65%">
                             </figure>
                             {% if response == 0%}
-                                <label for "answer" style="font-size:1.75vw; color:black">Answer: </label>
+                                <label for="answer" style="font-size:1.75vw; color:black">Answer: </label>
                                 <input name="answer" type="text" value="{{answer}}" style="font-size:1.75vw" size="9">
                                 <br/>
                                 {% for category,message in messages %}

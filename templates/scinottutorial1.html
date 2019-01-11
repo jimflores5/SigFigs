@@ -18,9 +18,9 @@
         <div class="container-fluid wrapper text-center">
             {% with messages = get_flashed_messages(with_categories=True) %} 
                 <form action="/scinottutorial1" method="post">
-                    <label for "decimal" style="font-size: 2.5vw">1500= </label>
+                    <label for="decimal" style="font-size: 2.5vw">1500= </label>
                     <input name="decimal" type="text" style="font-size: 2.5vw" value="{{decimal}}" size="3">
-                    <label for "exponent" style="font-size: 2.5vw">x10</label>
+                    <label for="exponent" style="font-size: 2.5vw">x10</label>
                     <sup style="vertical-align: 1em"><input name="exponent" type="text" style="font-size: 2vw" value="{{exponent}}" size="1"></sup></br>
                     {% for category,message in messages %}
                         <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
