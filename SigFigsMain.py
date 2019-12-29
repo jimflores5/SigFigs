@@ -131,7 +131,7 @@ def sfcalcs():
 def scinotation():
     if request.method == 'POST':
         sciNot = request.form['sciNot']
-        if sciNot=='True':              #Given a value in sci notation, the user eneters a number in standard notation.
+        if sciNot=='True':              #Given a value in sci notation, the user enters a number in standard notation.
             answer = request.form['answer']
             result = request.form['value']
             sciValue = request.form['sciValue']
@@ -141,7 +141,7 @@ def scinotation():
             else:
                 flash('Try again, or click here to reveal the answer.', 'error')
             return render_template('scientificNotation.html',title="Scientific Notation", value = result, sciValue=sciValue, power = power, sciNot = True, answer = answer)
-        else:                            #Given a value in standard notation, the user eneters a number in sci notation.
+        else:                            #Given a value in standard notation, the user enters a number in sci notation.
             answer = request.form['answer']
             result = request.form['value']
             sciValue = request.form['sciValue']
