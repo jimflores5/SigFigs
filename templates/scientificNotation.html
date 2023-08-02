@@ -24,10 +24,10 @@
 
             {% for category,message in messages %}
                 {% if category != 'error' %}
-                    <span class='{{category}}' style="font-size: 14pt">{{message}}</span>
+                    <span class='{{category}}' style="font-size: 1.2vw">{{message}}</span>
                 {% elif sciNot == True %}
                     <div class="btn-group dropright">
-                        <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14pt; color:red">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 1.2vw; color:red">
                             {{message}}
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -45,19 +45,20 @@
                     </div>
                 {% endif %}
             {% endfor %}
-            </br></br>
+            </br>
+            <p style="color:purple; font-size:1.1vw">Progress = {{session['num_correct']}}/{{session['num_attempted']}}</p>
+            </br>
             <input name="value" type="hidden" value="{{value}}">
             <input name="sciNot" type="hidden" value="{{sciNot}}">
             <input name="power" type="hidden" value="{{power}}">
             <input name="sciValue" type="hidden" value="{{sciValue}}">
             <input class="btn btn-success" type="submit" value="Check Answer">
+            <a class="btn btn-primary" href="scinotation" role="button">Next Practice Problem</a>
         </form>
         {% endwith %}
         </br>
-        <a class="btn btn-primary" href="scinotation" role="button">Next Practice Problem</a>
-        </br></br>
         <div>
-            <a href='/'>Main Menu</a>
+            <a class="btn btn-secondary" href='/'>Main Menu</a>
         </div>
     </div>
 

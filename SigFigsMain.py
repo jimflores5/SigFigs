@@ -11,6 +11,8 @@ app.secret_key = 'yrtsimehc'
 @app.route('/')
 def index():
     session.clear()
+    session['num_correct'] = 0
+    session['num_attempted'] = 0
     return render_template('index.html',title="Sig Fig Practice")
 
 @app.route('/countingsf', methods=['POST', 'GET'])
@@ -138,8 +140,11 @@ def scinotation():
             power = request.form['power']
             if CheckAnswer(result, answer):
                 flash('Correct!  :-)', 'correct')
+                if session['first_try']:
+                    session['num_correct'] += 1
             else:
                 flash('Try again, or click here to reveal the answer.', 'error')
+            session['first_try'] = False
             return render_template('scientificNotation.html',title="Scientific Notation", value = result, sciValue=sciValue, power = power, sciNot = True, answer = answer)
         else:                            #Given a value in standard notation, the user enters a number in sci notation.
             answer = request.form['answer']
@@ -149,19 +154,23 @@ def scinotation():
             exponent = request.form['exponent']
             if CheckAnswer(power, exponent) and CheckAnswer(sciValue,answer):
                 flash('Correct!  :-)', 'correct')
+                if session['first_try']:
+                    session['num_correct'] += 1
             elif CheckAnswer(power, exponent) and not CheckAnswer(sciValue,answer):
                 flash('Correct power.  Wrong decimal value.', 'error')
             elif CheckAnswer(sciValue,answer) and not CheckAnswer(power, exponent):
                 flash('Correct decimal value.  Wrong power.', 'error')
             else:
                 flash('Both entries are incorrect.  Try again, or click to reveal the answer.', 'error')
-                
+            session['first_try'] = False
             return render_template('scientificNotation.html',title="Scientific Notation", value = result, sciValue=sciValue, power = power, sciNot = False, answer = answer, exponent = exponent)
 
+    session['first_try'] = True
     sigFigs = random.randrange(1,5)
     power = random.randrange(-5,9)
     value = MakeNumber(sigFigs,power)
     sciValue = ApplySciNotation(value, sigFigs)
+    session['num_attempted'] += 1
     if random.randrange(2) == 0:  #Flip a coin: If '0', ask the user to change sci notation into standard notation.
         return render_template('scientificNotation.html',title="Scientific Notation", value = value, sciValue=sciValue, power = power, sciNot = True)
     else:                         #Otherwise ('1'), ask the user to change standard notation into sci notation.
